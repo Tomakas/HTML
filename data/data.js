@@ -2,225 +2,257 @@
 
 export function getTopics() {
   return [
-    // Jídlo
+// Jídlo
+{
+  name: 'Food',
+  levels: [
+    // Úroveň 1
     {
-      name: 'Food',
-      levels: [
-        // Úroveň 1
-        {
-          levelNumber: 1,
-          words: [
-            { czech: 'jídlo', english: 'food', phonetic: 'fuːd' },
-            { czech: 'maso', english: 'meat', phonetic: 'miːt' },
-            { czech: 'vejce', english: 'egg', phonetic: 'ɛg' },
-            { czech: 'cukr', english: 'sugar', phonetic: 'ˈʃʊgər' },
-            { czech: 'rýže', english: 'rice', phonetic: 'raɪs' },
-            { czech: 'snídaně', english: 'breakfast', phonetic: 'ˈbrɛkfəst' },
-            { czech: 'oběd', english: 'lunch', phonetic: 'lʌntʃ' },
-            { czech: 'večeře', english: 'dinner', phonetic: 'ˈdɪnər' },
-            { czech: 'máslo', english: 'butter', phonetic: 'ˈbʌtər' },
-            { czech: 'lžíce', english: 'spoon', phonetic: 'spuːn' },
-            { czech: 'vidlička', english: 'fork', phonetic: 'fɔːrk' },
-            { czech: 'svačina', english: 'snack', phonetic: 'snæk' },
-            { czech: 'ovoce', english: 'fruit', phonetic: 'fruːt' },
-            { czech: 'těstoviny', english: 'pasta', phonetic: 'ˈpæstə' },
-            { czech: 'sůl', english: 'salt', phonetic: 'sɔːlt' },
-            { czech: 'vařit', english: 'cook', phonetic: 'kʊk' }, 
-            { czech: 'koření', english: 'spices', phonetic: 'ˈspaɪsɪz' },
-            { czech: 'talíř', english: 'plate', phonetic: 'pleɪt' },
-            { czech: 'čaj', english: 'tea', phonetic: 'tiː' },
-            { czech: 'káva', english: 'coffee', phonetic: 'ˈkɔːfi' },
-          ],
-        },
-        // Úroveň 2
-        {
-          levelNumber: 2,
-          words: [
-            { czech: 'polévka', english: 'soup', phonetic: 'suːp' },
-            { czech: 'salát', english: 'salad', phonetic: 'ˈsæləd' },
-            { czech: 'jablko', english: 'apple', phonetic: 'ˈæpl' },
-            { czech: 'banán', english: 'banana', phonetic: 'bəˈnænə' },
-            { czech: 'mrkev', english: 'carrot', phonetic: 'ˈkærət' },
-            { czech: 'rajče', english: 'tomato', phonetic: 'təˈmeɪtoʊ' },
-            { czech: 'cibule', english: 'onion', phonetic: 'ˈʌnjən' },
-            { czech: 'brambory', english: 'potatoes', phonetic: 'pəˈteɪtoʊz' },
-            { czech: 'šunka', english: 'ham', phonetic: 'hæm' },
-            { czech: 'nůž', english: 'knife', phonetic: 'naɪf' },
-            { czech: 'sýr', english: 'cheese', phonetic: 'tʃiːz' },
-            { czech: 'ryba', english: 'fish', phonetic: 'fɪʃ' },
-            { czech: 'klobása', english: 'sausage', phonetic: 'ˈsɔːsɪdʒ' },
-            { czech: 'slanina', english: 'bacon', phonetic: 'ˈbeɪkən' },
-            { czech: 'pivo', english: 'beer', phonetic: 'bɪr' },
-            { czech: 'víno', english: 'wine', phonetic: 'waɪn' },
-            { czech: 'jogurt', english: 'yogurt', phonetic: 'ˈjoʊgərt' },
-            { czech: 'džus', english: 'juice', phonetic: 'dʒuːs' },
-            { czech: 'péct', english: 'bake', phonetic: 'beɪk' },
-            { czech: 'kukuřice', english: 'corn', phonetic: 'kɔːrn' },
-          ],
-        },
-        // Úroveň 3
-        {
-          levelNumber: 3,
-          words: [
-            { czech: 'jíst', english: 'eat', phonetic: 'iːt' },
-            { czech: 'jahoda', english: 'strawberry', phonetic: 'ˈstrɔːbəri' },
-            { czech: 'chleba', english: 'bread', phonetic: 'bred' },
-            { czech: 'třešeň', english: 'cherry', phonetic: 'ˈtʃɛri' },
-            { czech: 'pepř', english: 'pepper', phonetic: 'ˈpɛpər' },
-            { czech: 'hrášek', english: 'pea', phonetic: 'piː' },
-            { czech: 'fazole', english: 'beans', phonetic: 'biːnz' },
-            { czech: 'voda', english: 'water', phonetic: 'ˈwɔːtər' },
-            { czech: 'hruška', english: 'pear', phonetic: 'pɛr' },
-            { czech: 'zelenina', english: 'vegetable', phonetic: 'ˈvɛdʒtəbəl' },
-            { czech: 'okurka', english: 'cucumber', phonetic: 'ˈkjuːkʌmbər' },
-            { czech: 'omáčka', english: 'sauce', phonetic: 'sɔːs' },
-            { czech: 'borůvka', english: 'blueberry', phonetic: 'ˈbluːbɛri' },
-            { czech: 'med', english: 'honey', phonetic: 'ˈhʌni' },
-            { czech: 'citrón', english: 'lemon', phonetic: 'ˈlɛmən' },
-            { czech: 'dezert', english: 'dessert', phonetic: 'dɪˈzɜːrt' },
-            { czech: 'sklenice', english: 'glass', phonetic: 'ɡlæs' },
-            { czech: 'hrnek', english: 'mug', phonetic: 'mʌɡ' },
-            { czech: 'česnek', english: 'garlic', phonetic: 'ˈɡɑrlɪk' },
-            { czech: 'hlad', english: 'hunger', phonetic: 'ˈhʌŋɡər' }
-          ],
-        },
+      levelNumber: 1,
+      words: [
+        { czech: 'jídlo', english: 'food', phonetic: 'fuːd' },
+        { czech: 'maso', english: 'meat', phonetic: 'miːt' },
+        { czech: 'vejce', english: 'egg', phonetic: 'ɛg' },
+        { czech: 'cukr', english: 'sugar', phonetic: 'ˈʃʊgər' },
+        { czech: 'rýže', english: 'rice', phonetic: 'raɪs' },
+        { czech: 'snídaně', english: 'breakfast', phonetic: 'ˈbrɛkfəst' },
+        { czech: 'oběd', english: 'lunch', phonetic: 'lʌntʃ' },
+        { czech: 'večeře', english: 'dinner', phonetic: 'ˈdɪnər' },
+        { czech: 'máslo', english: 'butter', phonetic: 'ˈbʌtər' },
+        { czech: 'lžíce', english: 'spoon', phonetic: 'spuːn' },
+        { czech: 'vidlička', english: 'fork', phonetic: 'fɔːrk' },
+        { czech: 'svačina', english: 'snack', phonetic: 'snæk' },
+        { czech: 'ovoce', english: 'fruit', phonetic: 'fruːt' },
+        { czech: 'těstoviny', english: 'pasta', phonetic: 'ˈpæstə' },
+        { czech: 'sůl', english: 'salt', phonetic: 'sɔːlt' },
+        { czech: 'vařit', english: 'cook', phonetic: 'kʊk' }, 
+        { czech: 'koření', english: 'spices', phonetic: 'ˈspaɪsɪz' },
+        { czech: 'talíř', english: 'plate', phonetic: 'pleɪt' },
+        { czech: 'čaj', english: 'tea', phonetic: 'tiː' },
+        { czech: 'káva', english: 'coffee', phonetic: 'ˈkɔːfi' },
       ],
     },
-    // Nature
+    // Úroveň 2
     {
-      name: 'Nature', 
-      levels: [
-        {
-          levelNumber: 1,
-          words: [
-            { czech: 'strom', english: 'tree', phonetic: 'triː' },
-            { czech: 'květina', english: 'flower', phonetic: 'ˈflaʊər' },
-            { czech: 'hora', english: 'mountain', phonetic: 'ˈmaʊntən' },
-            { czech: 'jezero', english: 'lake', phonetic: 'leɪk' },
-            { czech: 'řeka', english: 'river', phonetic: 'ˈrɪvər' },
-            { czech: 'les', english: 'forest', phonetic: 'ˈfɔːrɪst' },
-            { czech: 'louka', english: 'meadow', phonetic: 'ˈmɛdoʊ' },
-            { czech: 'oceán', english: 'ocean', phonetic: 'ˈoʊʃən' },
-            { czech: 'písek', english: 'sand', phonetic: 'sænd' },
-            { czech: 'skála', english: 'rock', phonetic: 'rɑːk' },
-            { czech: 'vodopád', english: 'waterfall', phonetic: 'ˈwɔːtərfɔːl' },
-            { czech: 'sopka', english: 'volcano', phonetic: 'vɒlˈkeɪnoʊ' }, // Změněno na "sopka"
-            { czech: 'prales', english: 'rainforest', phonetic: 'ˈreɪnfɔːrɪst' },
-            { czech: 'mlha', english: 'fog', phonetic: 'fɒɡ' },
-            { czech: 'bouřka', english: 'storm', phonetic: 'stɔːrm' },
-            { czech: 'deštník', english: 'umbrella', phonetic: 'ʌmˈbrɛlə' },
-            { czech: 'zima', english: 'winter', phonetic: 'ˈwɪntər' }, // Změněno na "zima"
-            { czech: 'léto', english: 'summer', phonetic: 'ˈsʌmər' }, // Změněno na "léto"
-            { czech: 'podzim', english: 'autumn', phonetic: 'ˈɔːtəm' },
-            { czech: 'jaro', english: 'spring', phonetic: 'sprɪŋ' },
-          ],
-        },
-        {
-          levelNumber: 2,
-          words: [
-            { czech: 'moře', english: 'sea', phonetic: 'siː' },
-            { czech: 'píseň', english: 'song', phonetic: 'sɒŋ' },
-            { czech: 'list', english: 'leaf', phonetic: 'liːf' },
-            { czech: 'větev', english: 'branch', phonetic: 'bræntʃ' }, // Změněno na "větev"
-            { czech: 'záhon', english: 'gardenbed', phonetic: 'ˈɡɑːrdənbɛd' }, // Spojeno
-            { czech: 'mrak', english: 'cloud', phonetic: 'klaʊd' }, // Změněno na "mrak"
-            { czech: 'světlo', english: 'light', phonetic: 'laɪt' },
-            { czech: 'tma', english: 'darkness', phonetic: 'ˈdɑːrk.nəs' },
-            { czech: 'horská', english: 'mountainriver', phonetic: 'ˈmaʊntənˈrɪvər' }, // Spojeno
-            { czech: 'polární', english: 'polaraurora', phonetic: 'ˈpoʊlərɔːˈrɔːrə' }, // Spojeno
-            { czech: 'jeskyně', english: 'cave', phonetic: 'keɪv' },
-            { czech: 'pískovcová', english: 'sandstonemountain', phonetic: 'ˈsændˌstoʊnˈmaʊntən' }, // Spojeno
-            { czech: 'pralesní', english: 'rainforesttree', phonetic: 'ˈreɪnfɔːrɪsttriː' }, // Spojeno, změněno na jednotné číslo
-            { czech: 'západ', english: 'sunset', phonetic: 'ˈsʌnsɛt' },
-            { czech: 'východ', english: 'sunrise', phonetic: 'ˈsʌnˌraɪz' },
-            { czech: 'vzdušný', english: 'aircurrent', phonetic: 'ɛrˈkʌrənt' }, // Spojeno
-            { czech: 'horská', english: 'mountainmeadow', phonetic: 'ˈmaʊntənˈmɛdoʊ' }, // Spojeno
-            { czech: 'kamení', english: 'stonefield', phonetic: 'stoʊnfiːld' }, // Spojeno, změněno na "kamení"
-            { czech: 'vodní', english: 'waterstream', phonetic: 'ˈwɔːtərstriːm' }, // Spojeno
-            { czech: 'vesmír', english: 'space', phonetic: 'speɪs' },
-          ],
-        },
-        {
-          levelNumber: 3,
-          words: [
-            { czech: 'tsunami', english: 'tsunami', phonetic: 'tsuːˈnɑːmi' },
-            { czech: 'vodní', english: 'waterstorm', phonetic: 'ˈwɔːtərstɔːrm' }, // Spojeno
-            { czech: 'soumrak', english: 'twilight', phonetic: 'ˈtwaɪlaɪt' },
-            { czech: 'přeháňka', english: 'rainshower', phonetic: 'reɪnˈʃaʊər' }, // Změněno na jednotné číslo
-            { czech: 'horský', english: 'mountainwind', phonetic: 'ˈmaʊntənwɪnd' }, // Spojeno
-            { czech: 'pískovcová', english: 'sandstone cave', phonetic: 'ˈsændˌstoʊn keɪv' },
-            { czech: 'ledovec', english: 'glacier', phonetic: 'ˈɡleɪʃər' },
-            { czech: 'sopečný', english: 'volcaniccrater', phonetic: 'vɒlˈkænɪkˈkreɪtər' }, // Spojeno
-            { czech: 'sněhová', english: 'snowcover', phonetic: 'snoʊˈkʌvər' }, // Spojeno
-            { czech: 'jarní', english: 'springfog', phonetic: 'sprɪŋfɒɡ' }, // Spojeno
-            { czech: 'listnatý', english: 'deciduousforest', phonetic: 'ˌdɛsɪˈdjuəsˈfɔːrɪst' }, // Spojeno
-            { czech: 'horský', english: 'mountainpass', phonetic: 'ˈmaʊntənpæs' }, // Spojeno
-            { czech: 'písečná', english: 'sandstorm', phonetic: 'ˈsændstɔːrm' },
-            { czech: 'sopečný', english: 'volcanicfault', phonetic: 'vɒlˈkænɪkfɔːlt' }, // Spojeno
-            { czech: 'pralesní', english: 'rainforestriver', phonetic: 'ˈreɪnfɔːrɪstˈrɪvər' }, // Spojeno
-            { czech: 'sněhová', english: 'snowstorm', phonetic: 'ˈsnoʊstɔːrm' },
-            { czech: 'pramen', english: 'spring', phonetic: 'sprɪŋ' }, 
-            { czech: 'vulkán', english: 'volcano', phonetic: 'vɒlˈkeɪnoʊ' },
-            { czech: 'záplava', english: 'flood', phonetic: 'flʌd' }, // Změněno na jednotné číslo
-            { czech: 'řepka', english: 'canolafield', phonetic: 'kəˈnoʊləfiːld' }, // Spojeno
-          ],
-        },
+      levelNumber: 2,
+      words: [
+        { czech: 'polévka', english: 'soup', phonetic: 'suːp' },
+        { czech: 'salát', english: 'salad', phonetic: 'ˈsæləd' },
+        { czech: 'jablko', english: 'apple', phonetic: 'ˈæpl' },
+        { czech: 'banán', english: 'banana', phonetic: 'bəˈnænə' },
+        { czech: 'mrkev', english: 'carrot', phonetic: 'ˈkærət' },
+        { czech: 'rajče', english: 'tomato', phonetic: 'təˈmeɪtoʊ' },
+        { czech: 'cibule', english: 'onion', phonetic: 'ˈʌnjən' },
+        { czech: 'brambory', english: 'potatoes', phonetic: 'pəˈteɪtoʊz' },
+        { czech: 'šunka', english: 'ham', phonetic: 'hæm' },
+        { czech: 'nůž', english: 'knife', phonetic: 'naɪf' },
+        { czech: 'sýr', english: 'cheese', phonetic: 'tʃiːz' },
+        { czech: 'ryba', english: 'fish', phonetic: 'fɪʃ' },
+        { czech: 'klobása', english: 'sausage', phonetic: 'ˈsɔːsɪdʒ' },
+        { czech: 'slanina', english: 'bacon', phonetic: 'ˈbeɪkən' },
+        { czech: 'pivo', english: 'beer', phonetic: 'bɪr' },
+        { czech: 'víno', english: 'wine', phonetic: 'waɪn' },
+        { czech: 'jogurt', english: 'yogurt', phonetic: 'ˈjoʊgərt' },
+        { czech: 'džus', english: 'juice', phonetic: 'dʒuːs' },
+        { czech: 'péct', english: 'bake', phonetic: 'beɪk' },
+        { czech: 'kukuřice', english: 'corn', phonetic: 'kɔːrn' },
       ],
     },
-    // Animals
+    // Úroveň 3
     {
-      name: 'Animals',
-      levels: [
-        // Level 1
-        {
-          levelNumber: 1,
-          words: [
-            { czech: 'pes', english: 'dog', phonetic: 'dɔɡ' },
-            { czech: 'kočka', english: 'cat', phonetic: 'kæt' },
-            { czech: 'kůň', english: 'horse', phonetic: 'hɔːrs' },
-            { czech: 'kráva', english: 'cow', phonetic: 'kaʊ' },
-            { czech: 'ovce', english: 'sheep', phonetic: 'ʃiːp' },
-            { czech: 'prase', english: 'pig', phonetic: 'pɪɡ' },
-            { czech: 'kůzlátko', english: 'kid', phonetic: 'kɪd' },
-            { czech: 'krocan', english: 'turkey', phonetic: 'ˈtɜːrki' },
-            { czech: 'pták', english: 'bird', phonetic: 'bɜːrd' },
-            { czech: 'ryba', english: 'fish', phonetic: 'fɪʃ' },
-          ],
-        },
-        // Level 2
-        {
-          levelNumber: 2,
-          words: [
-            { czech: 'lev', english: 'lion', phonetic: 'ˈlaɪən' },
-            { czech: 'tygr', english: 'tiger', phonetic: 'ˈtaɪɡər' },
-            { czech: 'slon', english: 'elephant', phonetic: 'ˈɛlɪfənt' },
-            { czech: 'žirafa', english: 'giraffe', phonetic: 'dʒɪˈræf' },
-            { czech: 'zebra', english: 'zebra', phonetic: 'ˈziːbrə' },
-            { czech: 'opice', english: 'monkey', phonetic: 'ˈmʌŋki' },
-            { czech: 'medvěd', english: 'bear', phonetic: 'bɛər' },
-            { czech: 'vlk', english: 'wolf', phonetic: 'wʊlf' },
-            { czech: 'včela', english: 'bee', phonetic: 'biː' },
-            { czech: 'kůře', english: 'raccoon', phonetic: 'ræˈkuːn' },
-          ],
-        },
-        // Level 3
-        {
-          levelNumber: 3,
-          words: [
-            { czech: 'ježek', english: 'hedgehog', phonetic: 'ˈhɛdʒhɒɡ' },
-            { czech: 'liška', english: 'fox', phonetic: 'fɒks' },
-            { czech: 'velbloud', english: 'camel', phonetic: 'ˈkæməl' },
-            { czech: 'panda', english: 'panda', phonetic: 'ˈpændə' },
-            { czech: 'orangutan', english: 'orangutan', phonetic: 'ˌɔːrəˈɡʊtən' },
-            { czech: 'raketa', english: 'rocket', phonetic: 'ˈrɒkɪt' },
-            { czech: 'plameňák', english: 'flamingo', phonetic: 'fləˈmɪŋɡoʊ' },
-            { czech: 'pavouk', english: 'spider', phonetic: 'ˈspaɪdər' },
-            { czech: 'velryba', english: 'whale', phonetic: 'weɪl' },
-            { czech: 'hroch', english: 'hippo', phonetic: 'ˈhɪpoʊ' },
-          ],
-        },
+      levelNumber: 3,
+      words: [
+        { czech: 'jíst', english: 'eat', phonetic: 'iːt' },
+        { czech: 'jahoda', english: 'strawberry', phonetic: 'ˈstrɔːbəri' },
+        { czech: 'chleba', english: 'bread', phonetic: 'bred' },
+        { czech: 'třešeň', english: 'cherry', phonetic: 'ˈtʃɛri' },
+        { czech: 'pepř', english: 'pepper', phonetic: 'ˈpɛpər' },
+        { czech: 'hrášek', english: 'pea', phonetic: 'piː' },
+        { czech: 'fazole', english: 'beans', phonetic: 'biːnz' },
+        { czech: 'voda', english: 'water', phonetic: 'ˈwɔːtər' },
+        { czech: 'hruška', english: 'pear', phonetic: 'pɛr' },
+        { czech: 'zelenina', english: 'vegetable', phonetic: 'ˈvɛdʒtəbəl' },
+        { czech: 'okurka', english: 'cucumber', phonetic: 'ˈkjuːkʌmbər' },
+        { czech: 'omáčka', english: 'sauce', phonetic: 'sɔːs' },
+        { czech: 'borůvka', english: 'blueberry', phonetic: 'ˈbluːbɛri' },
+        { czech: 'med', english: 'honey', phonetic: 'ˈhʌni' },
+        { czech: 'citrón', english: 'lemon', phonetic: 'ˈlɛmən' },
+        { czech: 'dezert', english: 'dessert', phonetic: 'dɪˈzɜːrt' },
+        { czech: 'sklenice', english: 'glass', phonetic: 'ɡlæs' },
+        { czech: 'hrnek', english: 'mug', phonetic: 'mʌɡ' },
+        { czech: 'česnek', english: 'garlic', phonetic: 'ˈɡɑrlɪk' },
+        { czech: 'hlad', english: 'hunger', phonetic: 'ˈhʌŋɡər' }
       ],
     },
+  ],
+},
+// Nature
+{
+  name: 'Nature', 
+  levels: [
+    {
+      levelNumber: 1,
+      words: [
+          { czech: 'strom', english: 'tree', phonetic: 'triː' },
+          { czech: 'květina', english: 'flower', phonetic: 'ˈflaʊər' },
+          { czech: 'hora', english: 'mountain', phonetic: 'ˈmaʊntən' },
+          { czech: 'jezero', english: 'lake', phonetic: 'leɪk' },
+          { czech: 'řeka', english: 'river', phonetic: 'ˈrɪvər' },
+          { czech: 'les', english: 'forest', phonetic: 'ˈfɔːrɪst' },
+          { czech: 'kořen', english: 'root', phonetic: 'ruːt' },
+          { czech: 'oceán', english: 'ocean', phonetic: 'ˈoʊʃən' },
+          { czech: 'písek', english: 'sand', phonetic: 'sænd' },
+          { czech: 'skála', english: 'rock', phonetic: 'rɑːk' },
+          { czech: 'obloha', english: 'sky', phonetic: 'skaɪ' },
+          { czech: 'sníh', english: 'snow', phonetic: 'snoʊ' },
+          { czech: 'mlha', english: 'fog', phonetic: 'fɒɡ' },
+          { czech: 'země', english: 'earth', phonetic: 'ɜːrθ' },
+          { czech: 'bouřka', english: 'storm', phonetic: 'stɔːrm' },
+          { czech: 'slunce', english: 'sun', phonetic: 'sʌn' },
+          { czech: 'hvězda', english: 'star', phonetic: 'stɑːr' },
+          { czech: 'tráva', english: 'grass', phonetic: 'ɡræs' },
+          { czech: 'listí', english: 'leaves', phonetic: 'liːvz' },
+          { czech: 'poušť', english: 'desert', phonetic: 'ˈdezərt' }
+      ],
+    },
+    {
+      levelNumber: 2,
+      words: [
+        { czech: 'moře', english: 'sea', phonetic: 'siː' },
+        { czech: 'kopec', english: 'hill', phonetic: 'hɪl' },
+        { czech: 'dřevo', english: 'wood', phonetic: 'wʊd' },
+        { czech: 'vítr', english: 'wind', phonetic: 'wɪnd' },
+        { czech: 'park', english: 'park', phonetic: 'pɑːrk' },
+        { czech: 'uhlí', english: 'coal', phonetic: 'koʊl' },
+        { czech: 'vesmír', english: 'universe', phonetic: 'ˈjuːnɪvɜːrs' },
+        { czech: 'měsíc', english: 'moon', phonetic: 'muːn' },
+        { czech: 'led', english: 'ice', phonetic: 'aɪs' },
+        { czech: 'sever', english: 'north', phonetic: 'nɔːrθ' },
+        { czech: 'jeskyně', english: 'cave', phonetic: 'keɪv' },
+        { czech: 'jih', english: 'south', phonetic: 'saʊθ' },
+        { czech: 'prales', english: 'rainforest', phonetic: 'ˈreɪnfɔːrɪst' },
+        { czech: 'západ slunce', english: 'sunset', phonetic: 'ˈsʌnsɛt' },
+        { czech: 'východ slunce', english: 'sunrise', phonetic: 'ˈsʌnˌraɪz' },
+        { czech: 'vzduch', english: 'air', phonetic: 'ɛr' },
+        { czech: 'východ', english: 'east', phonetic: 'iːst' },
+        { czech: 'západ', english: 'west', phonetic: 'wɛst' },
+        { czech: 'prach', english: 'dust', phonetic: 'dʌst' },
+        { czech: 'železo', english: 'iron', phonetic: 'ˈaɪərn' }
+      ],
+    },
+    {
+      levelNumber: 3,
+      words: [
+        { czech: 'tsunami', english: 'tsunami', phonetic: 'tsuːˈnɑːmi' },
+        { czech: 'blesk', english: 'lightning', phonetic: 'ˈlaɪtnɪŋ' },
+        { czech: 'hrom', english: 'thunder', phonetic: 'ˈθʌndər' },
+        { czech: 'déšť', english: 'rain', phonetic: 'reɪn' },
+        { czech: 'ledovec', english: 'glacier', phonetic: 'ˈɡleɪʃər' },
+        { czech: 'tma', english: 'darkness', phonetic: 'ˈdɑːrk.nəs' },
+        { czech: 'sněhulák', english: 'snowman', phonetic: 'ˈsnoʊmæn' },
+        { czech: 'výška', english: 'altitude', phonetic: 'ˈæltɪtjuːd' },
+        { czech: 'dálka', english: 'distance', phonetic: 'ˈdɪstəns' },
+        { czech: 'rychlost', english: 'speed', phonetic: 'spiːd' },
+        { czech: 'důl', english: 'mine', phonetic: 'maɪn' },
+        { czech: 'bylina', english: 'herb', phonetic: 'hɜːrb' }, 
+        { czech: 'ostrov', english: 'island', phonetic: 'ˈaɪlənd' },
+        { czech: 'diamant', english: 'diamond', phonetic: 'ˈdaɪəmənd' },
+        { czech: 'zlato', english: 'gold', phonetic: 'ɡoʊld' },
+        { czech: 'stříbro', english: 'silver', phonetic: 'ˈsɪlvər' },
+        { czech: 'povodeň', english: 'flood', phonetic: 'flʌd' },
+        { czech: 'zemětřesení', english: 'earthquake', phonetic: 'ˈɜːrθkweɪk' },
+        { czech: 'metr', english: 'meter', phonetic: 'ˈmiːtər' },
+        { czech: 'světlo', english: 'light', phonetic: 'laɪt' }
+      ],
+    },
+  ],
+},
+// Animals
+{
+  name: 'Animals',
+  levels: [
+    // Level 1
+    {
+      levelNumber: 1,
+      words: [
+        { czech: 'pes', english: 'dog', phonetic: 'dɔɡ' },
+        { czech: 'kočka', english: 'cat', phonetic: 'kæt' },
+        { czech: 'kůň', english: 'horse', phonetic: 'hɔːrs' },
+        { czech: 'kráva', english: 'cow', phonetic: 'kaʊ' },
+        { czech: 'ovce', english: 'sheep', phonetic: 'ʃiːp' },
+        { czech: 'prase', english: 'pig', phonetic: 'pɪɡ' },
+        { czech: 'králík', english: 'rabbit', phonetic: 'ˈræbɪt' }, 
+        { czech: 'krocan', english: 'turkey', phonetic: 'ˈtɜːrki' },
+        { czech: 'pták', english: 'bird', phonetic: 'bɜːrd' },
+        { czech: 'osel', english: 'donkey', phonetic: 'ˈdɒŋki' }, // Nahrazeno "ryba"
+        { czech: 'myš', english: 'mouse', phonetic: 'maʊs' },
+        { czech: 'kachna', english: 'duck', phonetic: 'dʌk' },
+        { czech: 'slepice', english: 'hen', phonetic: 'hɛn' },
+        { czech: 'husa', english: 'goose', phonetic: 'ɡuːs' },
+        { czech: 'želva', english: 'turtle', phonetic: 'ˈtɜːrtl' },
+        { czech: 'had', english: 'snake', phonetic: 'sneɪk' },
+        { czech: 'žába', english: 'frog', phonetic: 'frɒɡ' },
+        { czech: 'motýl', english: 'butterfly', phonetic: 'ˈbʌtərflaɪ' },
+        { czech: 'beruška', english: 'ladybug', phonetic: 'ˈleɪdibʌɡ' },
+        { czech: 'šváb', english: 'cockroach', phonetic: 'ˈkɒkroʊʧ' }, // Přidáno
+      ],
+    },
+    // Level 2
+    {
+      levelNumber: 2,
+      words: [
+        { czech: 'lev', english: 'lion', phonetic: 'ˈlaɪən' },
+        { czech: 'tygr', english: 'tiger', phonetic: 'ˈtaɪɡər' },
+        { czech: 'slon', english: 'elephant', phonetic: 'ˈɛlɪfənt' },
+        { czech: 'žirafa', english: 'giraffe', phonetic: 'dʒɪˈræf' },
+        { czech: 'zebra', english: 'zebra', phonetic: 'ˈziːbrə' },
+        { czech: 'opice', english: 'monkey', phonetic: 'ˈmʌŋki' },
+        { czech: 'medvěd', english: 'bear', phonetic: 'bɛər' },
+        { czech: 'vlk', english: 'wolf', phonetic: 'wʊlf' },
+        { czech: 'včela', english: 'bee', phonetic: 'biː' },
+        { czech: 'veverka', english: 'squirrel', phonetic: 'ˈskwɜːrəl' }, 
+        { czech: 'jelen', english: 'deer', phonetic: 'dɪr' },
+        { czech: 'sova', english: 'owl', phonetic: 'aʊl' },
+        { czech: 'orel', english: 'eagle', phonetic: 'ˈiːɡl' },
+        { czech: 'tučňák', english: 'penguin', phonetic: 'ˈpɛŋɡwɪn' },
+        { czech: 'papoušek', english: 'parrot', phonetic: 'ˈpærət' },
+        { czech: 'krokodýl', english: 'crocodile', phonetic: 'ˈkrɒkədaɪl' },
+        { czech: 'žralok', english: 'shark', phonetic: 'ʃɑːrk' }, 
+        { czech: 'delfín', english: 'dolphin', phonetic: 'ˈdɒlfɪn' },
+        { czech: 'losos', english: 'salmon', phonetic: 'ˈsæmən' },
+        { czech: 'žížala', english: 'earthworm', phonetic: 'ˈɜːθwɜːrm' }, 
+      ],
+    },
+    // Level 3
+    {
+      levelNumber: 3,
+      words: [
+        { czech: 'ježek', english: 'hedgehog', phonetic: 'ˈhɛdʒhɒɡ' },
+        { czech: 'liška', english: 'fox', phonetic: 'fɒks' },
+        { czech: 'velbloud', english: 'camel', phonetic: 'ˈkæməl' },
+        { czech: 'panda', english: 'panda', phonetic: 'ˈpændə' },
+        { czech: 'koza', english: 'goat', phonetic: 'ɡoʊt' },
+        { czech: 'červ', english: 'worm', phonetic: 'wɜːrm' }, 
+        { czech: 'pavouk', english: 'spider', phonetic: 'ˈspaɪdər' },
+        { czech: 'velryba', english: 'whale', phonetic: 'weɪl' },
+        { czech: 'hroch', english: 'hippo', phonetic: 'ˌhɪpə' },
+        { czech: 'vosa', english: 'wasp', phonetic: 'wɒsp' }, 
+        { czech: 'rhino', english: 'rhino', phonetic: 'ˈraɪnoʊ' },
+        { czech: 'kuře', english: 'chicken', phonetic: 'ˈtʃɪkɪn' }, 
+        { czech: 'krysa', english: 'rat', phonetic: 'ræt' },
+        { czech: 'netopýr', english: 'bat', phonetic: 'bæt' }, 
+        { czech: 'křeček', english: 'hamster', phonetic: 'ˈhæmstər' },
+        { czech: 'býk', english: 'bull', phonetic: 'bʊl' },
+        { czech: 'chobotnice', english: 'octopus', phonetic: 'ˈɒktəpəs' },
+        { czech: 'světluška', english: 'firefly', phonetic: 'ˈfaɪərflaɪ' }, // Nahrazeno "jelen"
+        { czech: 'tuňák', english: 'tuna', phonetic: 'ˈtuːnɑːk' }, // Přidáno
+        { czech: 'mravenec', english: 'ant', phonetic: 'ænt' }, // Přidáno
+      ],
+    },
+  ],
+},
+
+
     // Numbers
     {
       name: 'Numbers',
