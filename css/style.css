@@ -1,0 +1,294 @@
+/* css/style.css */
+
+body {
+    font-family: sans-serif;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .navigation-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    gap: 10px; /* Přidána mezera mezi tlačítky */
+  }
+  
+  .navigation-buttons button {
+    background-color: #0d6efd; /* Modrá barva */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 24px;
+    cursor: pointer;
+    flex-basis: 20%; /* Nastaví šířku tlačítka */
+    max-width: 150px; /* Maximální šířka tlačítka */
+  }
+  
+  .topic-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .topic-list li {
+    background-color: #f8f9fa; /* Světle šedá */
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .topic-list li:hover {
+    background-color: #e2e6ea; /* Tmavší šedá */
+  }
+  
+  .word-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .word-list li {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+  }
+  
+  .word-list li .english {
+    font-size: 20px;
+  }
+  
+  .word-list li .czech, .word-list li .phonetic {
+    font-size: 18px;
+    color: #6c757d; /* Šedá */
+  }
+  
+  .home-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .home-buttons button {
+    padding: 16px 32px;
+    border: none;
+    border-radius: 5px;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .home-buttons .learning {
+    background-color: #28a745; /* Zelená */
+  }
+  
+  .home-buttons .testing {
+    background-color: #dc3545; /* Červená */
+  }
+  
+  .home-buttons .learning:hover {
+    background-color: #218838; /* Tmavší zelená */
+  }
+  
+  .home-buttons .testing:hover {
+    background-color: #c82333; /* Tmavší červená */
+  }
+  
+  .testing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .testing-word {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .testing-input {
+    font-size: 36px;
+    color: #0d6efd; /* Modrá */
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .letter-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* Změna na 6 sloupců */
+    grid-template-rows: repeat(2, 1fr); /* Změna na 2 řádky */
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+  }
+  
+  .letter-button {
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    /* Změna velikosti padding a fontu */
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 30px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .letter-button:hover {
+    background-color: #0b5ed7;
+  }
+  
+  .testing-controls {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+    width: 100%; /* Nastaví šířku na 100% rodičovského elementu */
+  }
+  
+  .testing-controls button {
+    padding: 16px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    flex-basis: 20%; /* Nastaví šířku tlačítka */
+    max-width: 150px; /* Maximální šířka tlačítka */
+  }
+  
+  .testing-controls .delete {
+    background-color: #dc3545; /* Červená */
+  }
+  
+  .testing-controls .confirm {
+    background-color: #28a745; /* Zelená */
+  }
+  
+  .testing-controls .dont-know {
+    background-color: #ffc107; /* Oranžová */
+  }
+  
+  .testing-controls .delete:hover {
+    background-color: #c82333; /* Tmavší červená */
+  }
+  
+  .testing-controls .confirm:hover {
+    background-color: #218838; /* Tmavší zelená */
+  }
+  
+  .testing-controls .dont-know:hover {
+    background-color: #e0a800; /* Tmavší oranžová */
+  }
+  
+  .testing-score {
+    font-size: 24px;
+  }
+  
+  .alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+  
+  .alert-success {
+    color: #155724; /* Tmavě zelená */
+    background-color: #d4edda; /* Světle zelená */
+    border-color: #c3e6cb; /* Světle zelená */
+  }
+  
+  .alert-danger {
+    color: #721c24; /* Tmavě červená */
+    background-color: #f8d7da; /* Světle červená */
+    border-color: #f5c6cb; /* Světle červená */
+  }
+  
+  .alert-info {
+    color: #0c5460; /* Tmavě modrá */
+    background-color: #d1ecf1; /* Světle modrá */
+    border-color: #bee5eb; /* Světle modrá */
+  }
+  
+  .alert-title {
+    font-size: 26px;
+    font-weight: bold;
+  }
+  
+  .alert-content {
+    font-size: 22px;
+  }
+  
+  .alert-button {
+    background-color: #0d6efd; /* Modrá */
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .alert-button:hover {
+    background-color: #0b5ed7; /* Tmavší modrá */
+  }
+  
+  .final-score-dialog {
+    text-align: center;
+  }
+  
+  .final-score-dialog .alert-title {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .final-score-dialog .alert-content {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  
+  .final-score-dialog .alert-button {
+    background-color: #28a745; /* Zelená */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .final-score-dialog .alert-button:hover {
+    background-color: #218838; /* Tmavší zelená */
+  }
+
+  
+  .testing-controls {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+    width: 500px;
+  }
+
+  .progress-bar-container {
+    width: 100%;
+    background-color: #e0e0e0; /* Světle šedá */
+    border-radius: 5px;
+    margin-bottom: 20px;
+    overflow: hidden; /* Skryje přečnívající část progress baru */
+  }
+  
+  .progress-bar {
+    height: 30px;
+    background-color: #4caf50; /* Zelená */
+    width: 0%; /* Počáteční šířka 0% */
+  }

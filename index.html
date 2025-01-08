@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naše škola</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="navigation-buttons">
+      <button onclick="goTo('/')">Domů</button>
+      <button onclick="goBack()">Zpět</button>
+      <button onclick="showHelp()">Nápověda</button>
+    </div>
+
+    <div class="home-buttons">
+      <button class="learning" onclick="goTo('/topic.html?mode=learning')">Učení</button>
+      <button class="testing" onclick="goTo('/topic.html?mode=testing')">Testování</button>
+    </div>
+  </div>
+
+  <script>
+    function goTo(path) {
+      window.location.href = window.location.origin + path;
+    }
+
+    function goBack() {
+      window.history.back();
+    }
+
+    function showHelp() {
+      alert("Nápověda:\n\n" +
+        "Domů - Návrat na domovskou stránku.\n" +
+        "Zpět - Návrat na předchozí stránku.\n" +
+        "Učení - Výběr témat k učení.\n" +
+        "Testování - Výběr témat k otestování znalostí.");
+    }
+  </script>
+</body>
+</html>
