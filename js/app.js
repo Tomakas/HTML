@@ -3,6 +3,7 @@
 import { getTopics } from '../data/data.js';
 import { Topic, Level, Word } from './models.js';
 
+// Globální proměnné
 let currentTopic = null;
 let currentLevel = null;
 let remainingWords = [];
@@ -17,19 +18,95 @@ let totalWordsInLevel = 0;
 let learningCurrentIndex = 0;
 let learningWords = [];
 
+// Pro Přehrávání Zvuku
+let audioEnabled = true; // Výchozí hodnota
+
+// Aktuální režim ('learning' nebo 'testing')
+let currentMode = null;
+
 document.addEventListener('DOMContentLoaded', () => {
   const path = window.location.pathname;
+  
+  // Načtení nastavení zvuku
+  loadSettings();
+
+  // Inicializace podle aktuální stránky
   if (path.endsWith('/topic.html')) {
     loadTopics();
   } else if (path.endsWith('/learning.html')) {
-    // loadWords(); // Odstraníme listování slov
+    initLearning();
   } else if (path.endsWith('/testing.html')) {
     initTesting();
-  } else if (path.endsWith('/levels.html')) { // Oprava na 'levels.html'
+  } else if (path.endsWith('/levels.html')) {
     loadLevels();
   }
+
+  // Inicializace modal okna pro nastavení, pokud existuje
+  initializeSettingsModal();
 });
 
+/**
+ * Funkce pro inicializaci modal okna pro nastavení
+ */
+export function initializeSettingsModal() {
+  const settingsButton = document.getElementById('settings-button');
+  const modal = document.getElementById('settings-modal');
+  const closeButton = modal ? modal.querySelector('.close-button') : null;
+  const audioToggle = modal ? modal.querySelector('#audio-toggle') : null;
+
+  if (settingsButton && modal && closeButton && audioToggle) {
+    // Otevření modalu
+    settingsButton.addEventListener('click', () => {
+      modal.style.display = 'block';
+    });
+
+    // Zavření modalu při kliknutí na zavírací tlačítko
+    closeButton.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    // Zavření modalu při kliknutí mimo obsah
+    window.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+
+    // Nastavení checkboxu podle načteného nastavení
+    audioToggle.checked = audioEnabled;
+
+    // Změna nastavení přehrávání zvuku
+    audioToggle.addEventListener('change', () => {
+      toggleAudio(audioToggle.checked);
+    });
+  }
+}
+
+/**
+ * Načte nastavení přehrávání zvuku z localStorage
+ */
+export function loadSettings() {
+  const storedAudioEnabled = localStorage.getItem('audioEnabled');
+  if (storedAudioEnabled !== null) {
+    audioEnabled = storedAudioEnabled === 'true';
+  } else {
+    audioEnabled = true; // Výchozí hodnota
+    localStorage.setItem('audioEnabled', 'true');
+  }
+}
+
+/**
+ * Přepne nastavení přehrávání zvuku a uloží do localStorage
+ * @param {boolean} enabled - Stav přehrávání zvuku
+ */
+export function toggleAudio(enabled) {
+  audioEnabled = enabled;
+  localStorage.setItem('audioEnabled', enabled);
+}
+
+/**
+ * Načte a zobrazí seznam témat
+ */
 export function loadTopics() {
   const topics = getTopics();
   const topicList = document.getElementById('topic-list');
@@ -43,7 +120,7 @@ export function loadTopics() {
     'Food': 'food.png',
     'Hobbies': 'hobby.png',
     'Home': 'home.png',
-    'People': 'human.png', // 'People' mapuje na 'human.png'
+    'People': 'human.png',
     'Nature': 'nature.png',
     'Numbers': 'numbers.png',
     'Time': 'time.png',
@@ -53,10 +130,10 @@ export function loadTopics() {
   topicList.innerHTML = '';
   topics.forEach(topic => {
     const listItem = document.createElement('li');
-    listItem.classList.add('topic-item'); // Přidáme třídu pro CSS
+    listItem.classList.add('topic-item');
 
     // Získání názvu obrázku z mapy
-    const imageName = imageMap[topic.name] || 'default.png'; // Použije 'default.png' pokud není nalezen
+    const imageName = imageMap[topic.name] || 'default.png';
 
     // Vytvoření obsahu seznamu s obrázkem a názvem
     listItem.innerHTML = `
@@ -73,6 +150,9 @@ export function loadTopics() {
   });
 }
 
+/**
+ * Načte a zobrazí seznam úrovní pro vybrané téma
+ */
 export function loadLevels() {
   const urlParams = new URLSearchParams(window.location.search);
   const topicName = urlParams.get('topic');
@@ -97,10 +177,103 @@ export function loadLevels() {
   });
 }
 
-export function loadWords() {
-  // Stará funkce, nyní se nepoužívá
+/**
+ * Inicializuje Learning Mode
+ */
+export function initLearning() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const topicName = urlParams.get('topic');
+  const levelNumber = parseInt(urlParams.get('level'));
+  const topics = getTopics();
+  const topic = topics.find(t => t.name === topicName);
+  currentTopic = topic;
+  const level = topic.levels.find(l => l.levelNumber === levelNumber);
+  currentLevel = level;
+  learningWords = level.words;
+  learningCurrentIndex = 0;
+  totalWordsInLevel = learningWords.length;
+  currentMode = 'learning'; // Nastavení aktuálního režimu
+  updateLearningDisplay();
+  updateLearningProgressBar();
+  updateLearningButtons();
 }
 
+/**
+ * Aktualizuje zobrazení aktuálního slova v Learning Mode
+ */
+function updateLearningDisplay() {
+  const learningWordElement = document.getElementById('learning-word');
+  if (learningWordElement && learningWords[learningCurrentIndex]) {
+    const word = learningWords[learningCurrentIndex];
+    learningWordElement.innerHTML = `
+      <span class="english-word">${word.english}</span> - 
+      <span class="czech-word">${word.czech}</span> (<span class="phonetic">${word.phonetic}</span>)
+    `;
+
+    // Přehrání zvuku, pokud je zapnutý audio
+    if (audioEnabled) {
+      const audio = new Audio(`voice/${word.english.toLowerCase()}.mp3`);
+      audio.play().catch(error => {
+        console.error(`Nelze přehrát zvuk pro slovo: ${word.english}`, error);
+      });
+    }
+  }
+}
+
+/**
+ * Funkce pro tlačítko "Zpět" v Learning Mode
+ */
+export function onLearningBack() {
+  if (learningCurrentIndex > 0) {
+    learningCurrentIndex--;
+    updateLearningDisplay();
+    updateLearningProgressBar();
+    updateLearningButtons();
+  }
+}
+
+/**
+ * Funkce pro tlačítko "Další" v Learning Mode
+ */
+export function onLearningNext() {
+  if (learningCurrentIndex < learningWords.length - 1) {
+    learningCurrentIndex++;
+    updateLearningDisplay();
+    updateLearningProgressBar();
+    updateLearningButtons();
+  }
+}
+
+/**
+ * Aktualizuje stav tlačítek "Zpět" a "Další" v Learning Mode
+ */
+function updateLearningButtons() {
+  const backButton = document.getElementById('learning-back-button');
+  const nextButton = document.getElementById('learning-next-button');
+
+  if (backButton) {
+    backButton.disabled = learningCurrentIndex === 0;
+  }
+
+  if (nextButton) {
+    nextButton.disabled = learningCurrentIndex === learningWords.length - 1;
+  }
+}
+
+/**
+ * Aktualizuje progress bar v Learning Mode
+ */
+function updateLearningProgressBar() {
+  const progressBar = document.getElementById('learning-progress-bar');
+  const percentage = totalWordsInLevel > 0 ? ((learningCurrentIndex + 1) / totalWordsInLevel) * 100 : 0;
+  if (progressBar) {
+    progressBar.style.width = `${percentage}%`;
+  }
+}
+
+/**
+ * Inicializuje Testing Mode
+ */
 export function initTesting() {
   const urlParams = new URLSearchParams(window.location.search);
   const topicName = urlParams.get('topic');
@@ -114,99 +287,36 @@ export function initTesting() {
   wordsToTest = [];
   totalWordsInLevel = level.words.length;
   score = 0;
+  currentMode = 'testing'; // Nastavení aktuálního režimu
   updateScoreDisplay();
   updateProgressBar();
   loadNewWord();
 }
 
-export function initLearning() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const topicName = urlParams.get('topic');
-  const levelNumber = parseInt(urlParams.get('level'));
-  const mode = urlParams.get('mode');
-  const topics = getTopics();
-  const topic = topics.find(t => t.name === topicName);
-  currentTopic = topic;
-  const level = topic.levels.find(l => l.levelNumber === levelNumber);
-  currentLevel = level;
-  learningWords = level.words;
-  learningCurrentIndex = 0;
-  totalWordsInLevel = learningWords.length;
-  updateLearningDisplay();
-  updateLearningProgressBar();
-  updateLearningButtons();
-}
-
-function updateLearningDisplay() {
-  const learningWordElement = document.getElementById('learning-word');
-  if (learningWordElement && learningWords[learningCurrentIndex]) {
-    const word = learningWords[learningCurrentIndex];
-    learningWordElement.innerHTML = `
-      <span class="english-word">${word.english}</span> - 
-      <span class="czech-word">${word.czech}</span> (<span class="phonetic">${word.phonetic}</span>)
-    `;
-  }
-}
-
-function onLearningBack() {
-  if (learningCurrentIndex > 0) {
-    learningCurrentIndex--;
-    updateLearningDisplay();
-    updateLearningProgressBar();
-    updateLearningButtons();
-  }
-}
-
-function onLearningNext() {
-  if (learningCurrentIndex < learningWords.length - 1) {
-    learningCurrentIndex++;
-    updateLearningDisplay();
-    updateLearningProgressBar();
-    updateLearningButtons();
-  }
-}
-
-function updateLearningButtons() {
-  const backButton = document.getElementById('learning-back-button');
-  const nextButton = document.getElementById('learning-next-button');
-
-  if (learningCurrentIndex === 0) {
-    backButton.disabled = true;
-  } else {
-    backButton.disabled = false;
-  }
-
-  if (learningCurrentIndex === learningWords.length - 1) {
-    nextButton.disabled = true;
-  } else {
-    nextButton.disabled = false;
-  }
-}
-
-function updateLearningProgressBar() {
-  const progressBar = document.getElementById('learning-progress-bar');
-  const percentage = totalWordsInLevel > 0 ? ((learningCurrentIndex + 1) / totalWordsInLevel) * 100 : 0;
-  progressBar.style.width = `${percentage}%`;
-}
-
-// --- Existující funkce pro Testování ---
-
+/**
+ * Načte a zobrazí nové slovo v Testing Mode
+ */
 function loadNewWord() {
   if (remainingWords.length === 0) {
     if (wordsToTest.length === 0) {
-        showFinalScoreDialog();
-        return;
+      showFinalScoreDialog();
+      return;
     } else {
-        remainingWords.push(...wordsToTest);
-        wordsToTest = [];
+      remainingWords.push(...wordsToTest);
+      wordsToTest = [];
     }
   }
   currentWord = remainingWords.splice(Math.floor(Math.random() * remainingWords.length), 1)[0];
   userInput = '';
   generateLetterOptions();
   updateDisplay();
+
+  // V Testing Mode neprohráváme zvuk při načtení nového slova
 }
 
+/**
+ * Generuje a zobrazuje písmena pro sestavení odpovědi uživatele
+ */
 function generateLetterOptions() {
   const uniqueLetters = new Set();
 
@@ -230,68 +340,112 @@ function generateLetterOptions() {
   });
 }
 
+/**
+ * Aktualizuje zobrazení aktuálního slova a uživatelského vstupu v Testing Mode
+ */
 function updateDisplay() {
-  document.getElementById('testing-word').textContent = currentWord.czech;
-  document.getElementById('testing-input').value = userInput;
+  const testingWordElement = document.getElementById('testing-word');
+  const testingInputElement = document.getElementById('testing-input');
+  if (testingWordElement && testingInputElement && currentWord) {
+    testingWordElement.textContent = currentWord.czech;
+    testingInputElement.value = userInput;
+  }
 }
 
-function onLetterTapped(letter) {
+/**
+ * Přidá písmeno do uživatelského vstupu
+ * @param {string} letter - Písmeno, které uživatel klikl
+ */
+export function onLetterTapped(letter) {
   userInput += letter.toLowerCase();
   updateDisplay();
 }
 
-window.onDeleteTapped = () => {
+/**
+ * Vymaže celý uživatelský vstup
+ */
+export function onDeleteTapped() {
   userInput = '';
   updateDisplay();
 }
 
-window.onConfirmTapped = () => {
+/**
+ * Potvrzuje odpověď uživatele
+ */
+export function onConfirmTapped() {
   const isCorrect = userInput === currentWord.english.toLowerCase();
   handleAnswer(isCorrect);
 }
 
-window.onDontKnowTapped = () => {
+/**
+ * Označuje, že uživatel nevěděl odpověď
+ */
+export function onDontKnowTapped() {
   handleAnswer(false);
 }
 
+/**
+ * Zpracuje odpověď uživatele a aktualizuje skóre
+ * @param {boolean} isCorrect - Indikátor, zda je odpověď správná
+ */
 function handleAnswer(isCorrect) {
-    if (isCorrect) {
-        score++;
-        updateScoreDisplay();
-        showDialog('Správně!', '', true);
-        setTimeout(() => {
-            if (remainingWords.length === 0 && wordsToTest.length === 0) {
-                showFinalScoreDialog();
-            } else {
-                updateProgressBar();
-                loadNewWord();
-            }
-        }, 1000);
-    } else {
-        score -= 2;
-        if (score < 0) {
-            score = 0;
-        }
-        updateScoreDisplay();
-        if (!wordsToTest.some(word => word.english === currentWord.english)) {
-            wordsToTest.push(currentWord);
-        }
-        showDialog('Špatně!', `Správná odpověď byla "${currentWord.english}".`, false);
-        setTimeout(() => {
-            if (remainingWords.length === 0 && wordsToTest.length === 0) {
-                showFinalScoreDialog();
-            } else {
-                updateProgressBar();
-                loadNewWord();
-            }
-        }, 4000);
+  if (isCorrect) {
+    score++;
+    updateScoreDisplay();
+    showDialog('Správně!', '', true);
+    setTimeout(() => {
+      if (remainingWords.length === 0 && wordsToTest.length === 0) {
+        showFinalScoreDialog();
+      } else {
+        updateProgressBar();
+        loadNewWord();
+      }
+    }, 1000);
+  } else {
+    score -= 2;
+    if (score < 0) {
+      score = 0;
     }
+    updateScoreDisplay();
+    if (!wordsToTest.some(word => word.english === currentWord.english)) {
+      wordsToTest.push(currentWord);
+    }
+    showDialog('Špatně!', `Správná odpověď byla "${currentWord.english}".`, false);
+    setTimeout(() => {
+      if (remainingWords.length === 0 && wordsToTest.length === 0) {
+        showFinalScoreDialog();
+      } else {
+        updateProgressBar();
+        loadNewWord();
+      }
+    }, 4000);
+  }
+
+  // Přehrání zvuku po odpovědi v Testing Mode
+  if (currentMode === 'testing' && audioEnabled) {
+    const audio = new Audio(`voice/${currentWord.english.toLowerCase()}.mp3`);
+    audio.play().catch(error => {
+      console.error(`Nelze přehrát zvuk pro slovo: ${currentWord.english}`, error);
+    });
+  }
 }
 
+/**
+ * Aktualizuje zobrazení skóre
+ */
 function updateScoreDisplay() {
-  document.getElementById('testing-score').textContent = `Skóre: ${score}`;
+  const scoreElement = document.getElementById('testing-score');
+  if (scoreElement) {
+    scoreElement.textContent = `Skóre: ${score}`;
+  }
 }
 
+/**
+ * Zobrazuje dialogové okno s informacemi o odpovědi
+ * @param {string} title - Titulek dialogu
+ * @param {string} content - Obsah dialogu
+ * @param {boolean} isSuccess - Indikátor, zda je odpověď správná
+ */
 function showDialog(title, content, isSuccess) {
   const alertContainer = document.getElementById('alert-container');
   alertContainer.innerHTML = '';
@@ -314,13 +468,16 @@ function showDialog(title, content, isSuccess) {
   alertContainer.appendChild(alertDiv);
 
   setTimeout(() => {
-      alertContainer.removeChild(alertDiv);
-      if (remainingWords.length === 0 && wordsToTest.length === 0) {
-          showFinalScoreDialog();
-      }
+    alertContainer.removeChild(alertDiv);
+    if (remainingWords.length === 0 && wordsToTest.length === 0) {
+      showFinalScoreDialog();
+    }
   }, isSuccess ? 1000 : 4000);
 }
 
+/**
+ * Zobrazuje finální dialog s výsledkem testu
+ */
 function showFinalScoreDialog() {
   const alertContainer = document.getElementById('alert-container');
   const alertDiv = document.createElement('div');
@@ -333,13 +490,14 @@ function showFinalScoreDialog() {
   alertContainer.appendChild(alertDiv);
 }
 
+/**
+ * Aktualizuje progress bar v Testing Mode
+ */
 function updateProgressBar() {
   const progressBar = document.getElementById('progress-bar');
   const answeredWords = totalWordsInLevel - (remainingWords.length + wordsToTest.length);
-  const percentage = totalWordsInLevel > 0 ? (answeredWords / totalWordsInLevel) * 100 : 0; // Ošetření dělení nulou
-  progressBar.style.width = `${percentage}%`;
+  const percentage = totalWordsInLevel > 0 ? (answeredWords / totalWordsInLevel) * 100 : 0;
+  if (progressBar) {
+    progressBar.style.width = `${percentage}%`;
+  }
 }
-
-// Připojení Learning Mode funkcí k window objektu
-window.onLearningBack = onLearningBack;
-window.onLearningNext = onLearningNext;

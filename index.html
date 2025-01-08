@@ -18,12 +18,25 @@
     <div class="home-buttons">
       <button class="learning" onclick="goTo('/topic.html?mode=learning')">Učení</button>
       <button class="testing" onclick="goTo('/topic.html?mode=testing')">Testování</button>
+      <button class="settings" id="settings-button">Nastavení</button> <!-- Přidáno nové tlačítko -->
+    </div>
+  </div>
+
+  <!-- Nastavení Modal -->
+  <div id="settings-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Nastavení</h2>
+      <div class="setting-item">
+        <label for="audio-toggle">Přehrávání zvuku:</label>
+        <input type="checkbox" id="audio-toggle">
+      </div>
     </div>
   </div>
 
   <script type="module">
-    // Importujte pouze, pokud je potřeba
     import { getTopics } from './data/data.js';
+    import { loadSettings, toggleAudio, initializeSettingsModal } from './js/app.js';
 
     // Připojte funkce k objektu window, aby byly globálně dostupné
     window.goTo = function(path) {
@@ -41,6 +54,12 @@
         "Učení - Výběr témat k učení.\n" +
         "Testování - Výběr témat k otestování znalostí.");
     }
+
+    // Inicializace nastavení a modal okna
+    document.addEventListener('DOMContentLoaded', () => {
+      loadSettings();
+      initializeSettingsModal();
+    });
   </script>
 </body>
 </html>
