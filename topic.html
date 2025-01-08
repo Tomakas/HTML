@@ -1,41 +1,41 @@
+<!-- /topic.html -->
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Výběr Tématu</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Výběr Tématu</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="container">
-    <div class="navigation-buttons">
-      <button onclick="goTo('/')">Domů</button>
-      <button onclick="goBack()">Zpět</button>
-      <button onclick="showHelp()">Nápověda</button>
-    </div>
-    <ul id="topic-list" class="topic-list"></ul>
-  </div>
+  <div class="container">
+    <div class="navigation-buttons">
+      <button onclick="goTo('/')">Domů</button>
+      <button onclick="goBack()">Zpět</button>
+      <button onclick="showHelp()">Nápověda</button>
+    </div>
+    <ul id="topic-list" class="topic-list"></ul>
+  </div>
 
-  <script>
-    window.goTo = function (path) {
-      window.location.href = window.location.origin + path;
-    };
+  <script type="module">
+    import { loadTopics } from '/js/app.js';
 
-    window.goBack = function () {
-      window.history.back();
-    };
+    window.goTo = function(path) {
+      window.location.href = window.location.origin + path;
+    }
 
-    window.showHelp = function () {
-      alert("Nápověda:\n\n" +
-        "Kliknutím na tlačítko 'Domů' se vrátíte na domovskou stránku.\n" +
-        "Kliknutím na tlačítko 'Zpět' se vrátíte na předchozí stránku.\n" +
-        "Na této stránce si vyberte téma, ze kterého se chcete učit, nebo testovat.");
-    };
-  </script>
-  <script type="module">
-    import { loadTopics } from '/js/app.js';
+    window.goBack = function() {
+      window.history.back();
+    }
 
-    loadTopics();
-  </script>
+    window.showHelp = function() {
+      alert("Nápověda:\n\n" +
+        "Kliknutím na tlačítko 'Domů' se vrátíte na domovskou stránku.\n" +
+        "Kliknutím na tlačítko 'Zpět' se vrátíte na předchozí stránku.\n"+
+        "Na této stránce si vyberte téma, ze kterého se chcete učit, nebo testovat.");
+    }
+
+    loadTopics();
+  </script>
 </body>
 </html>

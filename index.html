@@ -1,44 +1,40 @@
+<!-- /index.html -->
 <!DOCTYPE html>
 <html lang="cs">
-
 <head>
-   
   <meta charset="UTF-8">
-   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naše škola</title>
-   
+  <title>Naše škola</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-    <div class="container">
-        <div class="navigation-buttons">
-            <button onclick="goTo('/')">Domů</button>
-            <button onclick="goBack()">Zpět</button>
-            <button onclick="showHelp()">Nápověda</button>
-          </div>
+  <div class="container">
+    <div class="navigation-buttons">
+      <button onclick="goTo('/')">Domů</button>
+      <button onclick="goBack()">Zpět</button>
+      <button onclick="showHelp()">Nápověda</button>
+    </div>
 
-        <div class="home-buttons">
-            <button class="learning" onclick="goTo('/topic.html?mode=learning')">Učení</button>
-            <button class="testing" onclick="goTo('/topic.html?mode=testing')">Testování</button>
-          </div>
-      </div>
+    <div class="home-buttons">
+      <button class="learning" onclick="goTo('/topic.html?mode=learning')">Učení</button>
+      <button class="testing" onclick="goTo('/topic.html?mode=testing')">Testování</button>
+    </div>
+  </div>
 
-   
   <script type="module">
-    // Nově přidána tato funkce
+    // Importujte pouze, pokud je potřeba
     import { getTopics } from './data/data.js';
 
-    window.goTo = function (path) {
+    // Připojte funkce k objektu window, aby byly globálně dostupné
+    window.goTo = function(path) {
       window.location.href = window.location.origin + path;
     }
 
-    window.goBack = function () {
+    window.goBack = function() {
       window.history.back();
     }
 
-    window.showHelp = function () {
+    window.showHelp = function() {
       alert("Nápověda:\n\n" +
         "Domů - Návrat na domovskou stránku.\n" +
         "Zpět - Návrat na předchozí stránku.\n" +
@@ -47,5 +43,4 @@
     }
   </script>
 </body>
-
 </html>

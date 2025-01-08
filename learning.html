@@ -15,9 +15,7 @@
     </div>
     <ul id="word-list" class="word-list"></ul>
   </div>
-  <script type="module">
-    import { loadWords } from '/js/app.js';
-
+  <script>
     window.goTo = function(path) {
       window.location.href = window.location.origin + path;
     }
@@ -32,7 +30,9 @@
         "Kliknutím na tlačítko 'Zpět' se vrátíte na předchozí stránku.\n"+
         "Na této stránce vidíte seznam slov pro učení.");
     }
-
+  </script>
+  <script type="module">
+    import { loadWords } from '/js/app.js';
     loadWords();
   </script>
 </body>

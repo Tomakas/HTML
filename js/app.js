@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-function loadTopics() {
+export function loadTopics() {
   const topics = getTopics();
   const topicList = document.getElementById('topic-list');
   const urlParams = new URLSearchParams(window.location.search);
@@ -47,7 +47,7 @@ function loadTopics() {
   });
 }
 
-function loadLevels(topicName) {
+export function loadLevels(topicName) {
   // Není potřeba znova parsovat url parametry
   // const urlParams = new URLSearchParams(window.location.search);
   // const topicName = urlParams.get('topic');
@@ -76,7 +76,7 @@ function loadLevels(topicName) {
   }
 }
 
-function loadWords() {
+export function loadWords() {
   const urlParams = new URLSearchParams(window.location.search);
   const topicName = urlParams.get('topic');
   const levelNumber = parseInt(urlParams.get('level'));
@@ -99,7 +99,7 @@ function loadWords() {
   });
 }
 
-function initTesting() {
+export function initTesting() {
   const urlParams = new URLSearchParams(window.location.search);
   const topicName = urlParams.get('topic');
   const levelNumber = parseInt(urlParams.get('level'));
