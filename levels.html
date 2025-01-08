@@ -13,10 +13,9 @@
       <button onclick="goBack()">Zpět</button>
       <button onclick="showHelp()">Nápověda</button>
     </div>
-    <ul id="level-list" class="word-list"></ul>
-  </div>
+    <ul id="level-list" class="topic-list"></ul> <!-- Použití stejné třídy 'topic-list' -->  </div>
 
-  <script type="module">
+   <script type="module">
     import { loadLevels } from '/js/app.js';
     window.goTo = function(path) {
       window.location.href = window.location.origin + path;
