@@ -62,26 +62,26 @@ export function getTopics() {
         {
           levelNumber: 3,
           words: [
-            { czech: 'hrst', english: 'handful', phonetic: 'ˈhændfʊl' },
-            { czech: 'koření', english: 'spice', phonetic: 'spaɪs' },
-            { czech: 'pekárna', english: 'bakery', phonetic: 'ˈbeɪkəri' },
-            { czech: 'smaženka', english: 'friedegg', phonetic: 'fraɪdɛg' }, // Spojeno
-            { czech: 'ošpalky', english: 'trays', phonetic: 'treɪz' },
-            { czech: 'pečení', english: 'baking', phonetic: 'ˈbeɪkɪŋ' },
-            { czech: 'gril', english: 'grill', phonetic: 'grɪl' },
-            { czech: 'žloutek', english: 'yolk', phonetic: 'joʊk' }, // Změněno na "žloutek"
-            { czech: 'cuketka', english: 'zucchinisoup', phonetic: 'zuːˈkiːnisuːp' }, // Spojeno, změněno na "cuketka"
-            { czech: 'zelenina', english: 'vegetables', phonetic: 'ˈvɛdʒtəbəlz' }, // Změněno na "zelenina"
-            { czech: 'ovoce', english: 'fruit', phonetic: 'fruːt' }, 
+            { czech: 'jíst', english: 'eat', phonetic: 'iːt' },
+            { czech: 'jahoda', english: 'strawberry', phonetic: 'ˈstrɔːbəri' },
+            { czech: 'chleba', english: 'bread', phonetic: 'bred' },
+            { czech: 'třešeň', english: 'cherry', phonetic: 'ˈtʃɛri' },
+            { czech: 'pepř', english: 'pepper', phonetic: 'ˈpɛpər' },
+            { czech: 'hrášek', english: 'pea', phonetic: 'piː' },
+            { czech: 'fazole', english: 'beans', phonetic: 'biːnz' },
+            { czech: 'voda', english: 'water', phonetic: 'ˈwɔːtər' },
+            { czech: 'hruška', english: 'pear', phonetic: 'pɛr' },
+            { czech: 'zelenina', english: 'vegetable', phonetic: 'ˈvɛdʒtəbəl' },
+            { czech: 'okurka', english: 'cucumber', phonetic: 'ˈkjuːkʌmbər' },
             { czech: 'omáčka', english: 'sauce', phonetic: 'sɔːs' },
-            { czech: 'kořenová', english: 'rootvegetable', phonetic: 'ruːtˈvɛdʒtəbəl' }, // Spojeno
-            { czech: 'polévkový', english: 'soupplate', phonetic: 'suːppleɪt' }, // Spojeno
-            { czech: 'slané', english: 'savorypastry', phonetic: 'ˈseɪvəriˈpeɪstri' }, // Spojeno
+            { czech: 'borůvka', english: 'blueberry', phonetic: 'ˈbluːbɛri' },
+            { czech: 'med', english: 'honey', phonetic: 'ˈhʌni' },
+            { czech: 'citrón', english: 'lemon', phonetic: 'ˈlɛmən' },
             { czech: 'dezert', english: 'dessert', phonetic: 'dɪˈzɜːrt' },
-            { czech: 'dezertní', english: 'dessertplate', phonetic: 'dɪˈzɜːrtpleɪt' }, // Spojeno
-            { czech: 'těstoviny', english: 'pasta', phonetic: 'ˈpæstə' }, 
-            { czech: 'zeleninová', english: 'vegetablesoup', phonetic: 'ˈvɛdʒtəbəlsːup' }, // Spojeno
-            { czech: 'grilovaná', english: 'grilledfish', phonetic: 'grɪldfɪʃ' }, // Spojeno
+            { czech: 'sklenice', english: 'glass', phonetic: 'ɡlæs' },
+            { czech: 'hrnek', english: 'mug', phonetic: 'mʌɡ' },
+            { czech: 'česnek', english: 'garlic', phonetic: 'ˈɡɑrlɪk' },
+            { czech: 'hlad', english: 'hunger', phonetic: 'ˈhʌŋɡər' }
           ],
         },
       ],

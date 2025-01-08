@@ -1,7 +1,5 @@
 // js/app.js
 
-
-
 import { getTopics } from '../data/data.js';
 import { Topic, Level, Word } from './models.js';
 
@@ -15,12 +13,16 @@ let letterOptions = [];
 let score = 0;
 let totalWordsInLevel = 0;
 
+// Pro Learning Mode
+let learningCurrentIndex = 0;
+let learningWords = [];
+
 document.addEventListener('DOMContentLoaded', () => {
   const path = window.location.pathname;
   if (path.endsWith('/topic.html')) {
     loadTopics();
   } else if (path.endsWith('/learning.html')) {
-    loadWords();
+    // loadWords(); // Odstraníme listování slov
   } else if (path.endsWith('/testing.html')) {
     initTesting();
   } else if (path.endsWith('/levels.html')) { // Oprava na 'levels.html'
@@ -28,20 +30,45 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-
 export function loadTopics() {
   const topics = getTopics();
   const topicList = document.getElementById('topic-list');
   const urlParams = new URLSearchParams(window.location.search);
   const mode = urlParams.get('mode');
 
+  // Mapa témat na názvy obrázků
+  const imageMap = {
+    'Animals': 'animal.png',
+    'Family': 'family.png',
+    'Food': 'food.png',
+    'Hobbies': 'hobby.png',
+    'Home': 'home.png',
+    'People': 'human.png', // 'People' mapuje na 'human.png'
+    'Nature': 'nature.png',
+    'Numbers': 'numbers.png',
+    'Time': 'time.png',
+    'Travel': 'travel.png'
+  };
+
   topicList.innerHTML = '';
   topics.forEach(topic => {
     const listItem = document.createElement('li');
-    listItem.textContent = topic.name;
+    listItem.classList.add('topic-item'); // Přidáme třídu pro CSS
+
+    // Získání názvu obrázku z mapy
+    const imageName = imageMap[topic.name] || 'default.png'; // Použije 'default.png' pokud není nalezen
+
+    // Vytvoření obsahu seznamu s obrázkem a názvem
+    listItem.innerHTML = `
+      <img src="img/${imageName}" alt="${topic.name}" class="topic-image">
+      <span class="topic-name">${topic.name}</span>
+    `;
+
+    // Přidání klikací události na celý seznamový prvek
     listItem.addEventListener('click', () => {
-      window.location.href = `/levels.html?mode=${mode}&topic=${encodeURIComponent(topic.name)}`; // Oprava na 'levels.html'
+      window.location.href = `/levels.html?mode=${mode}&topic=${encodeURIComponent(topic.name)}`;
     });
+
     topicList.appendChild(listItem);
   });
 }
@@ -69,27 +96,9 @@ export function loadLevels() {
     levelList.appendChild(listItem);
   });
 }
+
 export function loadWords() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const topicName = urlParams.get('topic');
-  const levelNumber = parseInt(urlParams.get('level'));
-  const topics = getTopics();
-  const topic = topics.find(t => t.name === topicName);
-  currentTopic = topic;
-  const level = topic.levels.find(l => l.levelNumber === levelNumber);
-  currentLevel = level;
-
-  const wordList = document.getElementById('word-list');
-  wordList.innerHTML = '';
-
-  level.words.forEach(word => {
-    const listItem = document.createElement('li');
-    listItem.innerHTML = `
-      <span class="english">${word.english}</span> - 
-      <span class="czech">${word.czech}</span> (<span class="phonetic">${word.phonetic}</span>)
-    `;
-    wordList.appendChild(listItem);
-  });
+  // Stará funkce, nyní se nepoužívá
 }
 
 export function initTesting() {
@@ -109,6 +118,78 @@ export function initTesting() {
   updateProgressBar();
   loadNewWord();
 }
+
+export function initLearning() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const topicName = urlParams.get('topic');
+  const levelNumber = parseInt(urlParams.get('level'));
+  const mode = urlParams.get('mode');
+  const topics = getTopics();
+  const topic = topics.find(t => t.name === topicName);
+  currentTopic = topic;
+  const level = topic.levels.find(l => l.levelNumber === levelNumber);
+  currentLevel = level;
+  learningWords = level.words;
+  learningCurrentIndex = 0;
+  totalWordsInLevel = learningWords.length;
+  updateLearningDisplay();
+  updateLearningProgressBar();
+  updateLearningButtons();
+}
+
+function updateLearningDisplay() {
+  const learningWordElement = document.getElementById('learning-word');
+  if (learningWordElement && learningWords[learningCurrentIndex]) {
+    const word = learningWords[learningCurrentIndex];
+    learningWordElement.innerHTML = `
+      <span class="english-word">${word.english}</span> - 
+      <span class="czech-word">${word.czech}</span> (<span class="phonetic">${word.phonetic}</span>)
+    `;
+  }
+}
+
+function onLearningBack() {
+  if (learningCurrentIndex > 0) {
+    learningCurrentIndex--;
+    updateLearningDisplay();
+    updateLearningProgressBar();
+    updateLearningButtons();
+  }
+}
+
+function onLearningNext() {
+  if (learningCurrentIndex < learningWords.length - 1) {
+    learningCurrentIndex++;
+    updateLearningDisplay();
+    updateLearningProgressBar();
+    updateLearningButtons();
+  }
+}
+
+function updateLearningButtons() {
+  const backButton = document.getElementById('learning-back-button');
+  const nextButton = document.getElementById('learning-next-button');
+
+  if (learningCurrentIndex === 0) {
+    backButton.disabled = true;
+  } else {
+    backButton.disabled = false;
+  }
+
+  if (learningCurrentIndex === learningWords.length - 1) {
+    nextButton.disabled = true;
+  } else {
+    nextButton.disabled = false;
+  }
+}
+
+function updateLearningProgressBar() {
+  const progressBar = document.getElementById('learning-progress-bar');
+  const percentage = totalWordsInLevel > 0 ? ((learningCurrentIndex + 1) / totalWordsInLevel) * 100 : 0;
+  progressBar.style.width = `${percentage}%`;
+}
+
+// --- Existující funkce pro Testování ---
 
 function loadNewWord() {
   if (remainingWords.length === 0) {
@@ -258,3 +339,7 @@ function updateProgressBar() {
   const percentage = totalWordsInLevel > 0 ? (answeredWords / totalWordsInLevel) * 100 : 0; // Ošetření dělení nulou
   progressBar.style.width = `${percentage}%`;
 }
+
+// Připojení Learning Mode funkcí k window objektu
+window.onLearningBack = onLearningBack;
+window.onLearningNext = onLearningNext;

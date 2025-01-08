@@ -1,3 +1,4 @@
+<!-- /learning.html -->
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -13,11 +14,26 @@
       <button onclick="goBack()">Zpět</button>
       <button onclick="showHelp()">Nápověda</button>
     </div>
-    <ul id="word-list" class="word-list"></ul>
+    
+    <!-- Progres bar -->
+    <div class="progress-bar-container">
+      <div class="progress-bar" id="learning-progress-bar"></div>
+    </div>
+    
+    <!-- Zobrazení aktuálního slova -->
+    <div class="learning-container">
+      <div id="learning-word" class="learning-word">Slovo zde</div>
+    </div>
+    
+    <!-- Navigační tlačítka -->
+    <div class="learning-controls">
+      <button id="learning-back-button" class="learning-control-button" onclick="onLearningBack()">Zpět</button>
+      <button id="learning-next-button" class="learning-control-button" onclick="onLearningNext()">Další</button>
+    </div>
   </div>
 
   <script type="module">
-    import { loadWords } from '/js/app.js';
+    import { initLearning } from '/js/app.js';
 
     // Připojení funkcí k objektu window
     window.goTo = function(path) {
@@ -31,12 +47,14 @@
     window.showHelp = function() {
       alert("Nápověda:\n\n" +
         "Kliknutím na tlačítko 'Domů' se vrátíte na domovskou stránku.\n" +
-        "Kliknutím na tlačítko 'Zpět' se vrátíte na předchozí stránku.\n"+
-        "Na této stránce vidíte seznam slov pro učení.");
+        "Kliknutím na tlačítko 'Zpět' se vrátíte na předchozí stránku.\n" +
+        "V režimu Učení se slova zobrazují jedno po druhém.\n" +
+        "Použijte tlačítka 'Zpět' a 'Další' pro navigaci mezi slovy.\n" +
+        "Progres bar ukazuje vaši aktuální pozici ve výuce.");
     }
 
-    // Načtení slov pro dané téma a úroveň bez argumentů
-    loadWords();
+    // Inicializace učení
+    initLearning();
   </script>
 </body>
 </html>
