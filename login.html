@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Přihlášení</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Přihlášení</h1>
+    <div class="user-selection">
+      <label for="username-select">Vyberte uživatele:</label>
+      <select id="username-select">
+        <option value="" disabled selected>-- Vyberte uživatele --</option>
+      </select>
+    </div>
+    <div class="user-creation">
+      <label for="new-username">Vytvořit nového uživatele:</label>
+      <input type="text" id="new-username" placeholder="Zadejte uživatelské jméno">
+      <button id="create-user-button">Vytvořit</button>
+    </div>
+    <button id="login-button">Přihlásit se</button>
+  </div>
+
+  <script type="module">
+    import { loadUsers, addUser, setCurrentUser } from './js/user.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const usernameSelect = document.getElementById('username-select');
+      const createUserButton = document.getElementById('create-user-button');
+      const newUsernameInput = document.getElementById('new-username');
+      const loginButton = document.getElementById('login-button');
+
+      // Načtení a zobrazení existujících uživatelů
+      const users = loadUsers();
+      users.forEach(user => {
+        const option = document.createElement('option');
+        option.value = user;
+        option.textContent = user;
+        usernameSelect.appendChild(option);
+      });
+
+      // Přidání nového uživatele
+      createUserButton.addEventListener('click', () => {
+        const newUsername = newUsernameInput.value.trim();
+        if (newUsername === '') {
+          alert('Uživatelské jméno nemůže být prázdné.');
+          return;
+        }
+        if (users.includes(newUsername)) {
+          alert('Toto uživatelské jméno již existuje.');
+          return;
+        }
+        addUser(newUsername);
+        const option = document.createElement('option');
+        option.value = newUsername;
+        option.textContent = newUsername;
+        usernameSelect.appendChild(option);
+        newUsernameInput.value = '';
+        alert(`Uživatel "${newUsername}" byl vytvořen.`);
+      });
+
+      // Přihlášení uživatele
+      loginButton.addEventListener('click', () => {
+        const selectedUser = usernameSelect.value;
+        if (!selectedUser) {
+          alert('Prosím, vyberte uživatele.');
+          return;
+        }
+        setCurrentUser(selectedUser);
+        window.location.href = '/index.html';
+      });
+    });
+  </script>
+</body>
+</html>

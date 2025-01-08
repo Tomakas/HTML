@@ -450,4 +450,131 @@ body {
     height: 20px;
     cursor: pointer;
   }
+
+  /* Základní styly pro navigaci */
+.navigation {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background-color: #f8f9fa;
+  border-left: 1px solid #dee2e6;
+  padding: 20px 10px;
+  border-radius: 8px 0 0 8px;
+}
+
+.navigation ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation li {
+  margin: 15px 0;
+}
+
+.navigation button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #343a40;
+}
+
+.navigation button:hover {
+  color: #007bff;
+}
+
+.navigation i {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+/* Styl pro aktuálně přihlášeného uživatele */
+.current-user {
+  position: fixed;
+  top: 10px;
+  right: 120px; /* Přizpůsobte podle šířky navigace */
+  font-size: 14px;
+  color: #6c757d;
+}
+
+/* Responzivní styly */
+@media (max-width: 1000px) {
+  /* Vertikální navigace na pravé straně se skryje */
+  .navigation {
+    display: none;
+  }
+
+  /* Spodní horizontální navigace */
+  .navigation-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+  }
+
+  .navigation-bottom ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .navigation-bottom li {
+    flex: 1;
+    text-align: center;
+  }
+
+  .navigation-bottom button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    color: #343a40;
+  }
+
+  .navigation-bottom button:hover {
+    color: #007bff;
+  }
+
+  .navigation-bottom i {
+    font-size: 20px;
+  }
+
+  /* Zobrazení aktuálně přihlášeného uživatele ve spodním menu */
+  .current-user {
+    position: fixed;
+    bottom: 60px; /* Přizpůsobte podle výšky spodního menu */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #6c757d;
+  }
+}
+
+/* Styl pro spodní navigaci */
+.navigation-bottom {
+  display: none; /* Výchozí skrytí pro velké obrazovky */
+}
+
+@media (max-width: 1000px) {
+  .navigation-bottom {
+    display: block;
+  }
+}
+
   

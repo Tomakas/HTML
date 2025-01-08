@@ -2,6 +2,7 @@
 
 import { getTopics } from '../data/data.js';
 import { Topic, Level, Word } from './models.js';
+import { getCurrentUser } from './user.js';
 
 // Globální proměnné
 let currentTopic = null;
@@ -29,7 +30,7 @@ let currentAudio = null;
 
 document.addEventListener('DOMContentLoaded', () => {
   const path = window.location.pathname;
-  
+
   // Načtení nastavení zvuku
   loadSettings();
 
@@ -233,7 +234,7 @@ export function onLearningBack() {
     updateLearningDisplay();
     updateLearningProgressBar();
     updateLearningButtons();
-    playCurrentWordAudio()
+    playCurrentWordAudio();
   }
 }
 
@@ -246,7 +247,7 @@ export function onLearningNext() {
     updateLearningDisplay();
     updateLearningProgressBar();
     updateLearningButtons();
-    playCurrentWordAudio()
+    playCurrentWordAudio();
   }
 }
 
@@ -316,8 +317,6 @@ function loadNewWord() {
   userInput = '';
   generateLetterOptions();
   updateDisplay();
-
-  // V Testing Mode neprohráváme zvuk při načtení nového slova
 }
 
 /**
