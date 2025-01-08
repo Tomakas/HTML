@@ -15,7 +15,6 @@
       <button onclick="showHelp()">Nápověda</button>
     </div>
     
- 
     <!-- Progres bar -->
     <div class="progress-bar-container">
       <div class="progress-bar" id="learning-progress-bar"></div>
@@ -76,7 +75,7 @@
       // Přidání event listeneru pro tlačítko "Audio"
       const audioButton = document.getElementById('learning-audio-button');
       if (audioButton) {
-        audioButton.addEventListener('click', playCurrentWordAudio);
+        audioButton.addEventListener('click', window.playCurrentWordAudio);
       }
     });
   </script>

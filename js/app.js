@@ -192,11 +192,18 @@ export function initLearning() {
   learningWords = level.words;
   learningCurrentIndex = 0;
   totalWordsInLevel = learningWords.length;
-  currentMode = 'learning'; // Nastavení aktuálního režimu
+  currentMode = 'learning'; // set mode
   updateLearningDisplay();
   updateLearningProgressBar();
   updateLearningButtons();
+  
+  // Automatické přehrání zvuku pro první slovo
+  if (audioEnabled) {
+    playCurrentWordAudio();
+  }
 }
+
+
 
 /**
  * Aktualizuje zobrazení aktuálního slova v Learning Mode
@@ -205,20 +212,19 @@ function updateLearningDisplay() {
   const learningWordElement = document.getElementById('learning-word');
   if (learningWordElement && learningWords[learningCurrentIndex]) {
     const word = learningWords[learningCurrentIndex];
+    currentWord = word; // Nastavení currentWord na aktuální slovo
+
+    console.log('Displaying word:', currentWord); // Pro diagnostiku
+
     learningWordElement.innerHTML = `
       <span class="english-word">${word.english}</span> - 
       <span class="czech-word">${word.czech}</span> (<span class="phonetic">${word.phonetic}</span>)
     `;
-
-    // Přehrání zvuku, pokud je zapnutý audio
-    if (audioEnabled) {
-      const audio = new Audio(`voice/${word.english.toLowerCase()}.mp3`);
-      audio.play().catch(error => {
-        console.error(`Nelze přehrát zvuk pro slovo: ${word.english}`, error);
-      });
-    }
   }
 }
+
+
+
 
 /**
  * Funkce pro tlačítko "Zpět" v Learning Mode
