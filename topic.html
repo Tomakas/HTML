@@ -16,8 +16,9 @@
     <ul id="topic-list" class="topic-list"></ul>
   </div>
 
-  <script type="module"> // Zkontrolovat type="module"
-    import { loadTopics } from './js/app.js';
+  <script type="module">
+    // Změna: Absolutní cesta k app.js
+    import { loadTopics } from '/js/app.js';
 
     function goTo(path) {
       window.location.href = window.location.origin + path;

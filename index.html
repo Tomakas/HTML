@@ -1,6 +1,30 @@
-<script type="module">
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naše škola</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="navigation-buttons">
+      <button onclick="goTo('/')">Domů</button>
+      <button onclick="goBack()">Zpět</button>
+      <button onclick="showHelp()">Nápověda</button>
+    </div>
+
+    <div class="home-buttons">
+      <button class="learning" onclick="goTo('/topic.html?mode=learning')">Učení</button>
+      <button class="testing" onclick="goTo('/topic.html?mode=testing')">Testování</button>
+    </div>
+  </div>
+
+  <script type="module">
+    // Nově přidána tato funkce
+    import { getTopics } from './data/data.js';
+
     function goTo(path) {
-      // Změna v goTo()
       window.location.href = window.location.origin + path;
     }
 
@@ -16,3 +40,5 @@
         "Testování - Výběr témat k otestování znalostí.");
     }
   </script>
+</body>
+</html>
