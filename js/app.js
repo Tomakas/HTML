@@ -1,5 +1,6 @@
 // js/app.js
 
+
 import { getTopics } from '../data/data.js';
 import { Topic, Level, Word } from './models.js';
 
@@ -15,14 +16,17 @@ let totalWordsInLevel = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
   const path = window.location.pathname;
+  const urlParams = new URLSearchParams(window.location.search);
+  const topicName = urlParams.get('topic');
+  const levelNumber = parseInt(urlParams.get('level'));
   if (path.endsWith('/topic.html')) {
     loadTopics();
   } else if (path.endsWith('/learning.html')) {
-    loadWords();
+    loadWords(topicName, levelNumber);
   } else if (path.endsWith('/testing.html')) {
-    initTesting();
-  } else if (path.endsWith('/level.html')){
-    loadLevels();
+    initTesting(topicName, levelNumber);
+  } else if (path.endsWith('/levels.html')){
+    loadLevels(topicName);
   }
 });
 
@@ -43,18 +47,18 @@ function loadTopics() {
   });
 }
 
-function loadLevels() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const topicName = urlParams.get('topic');
-  const mode = urlParams.get('mode');
+function loadLevels(topicName) {
+  // Není potřeba znova parsovat url parametry
+  // const urlParams = new URLSearchParams(window.location.search);
+  // const topicName = urlParams.get('topic');
+  const mode = urlParams.get('mode'); // mode se používá v loadLevels, tak ho parsujeme zde
   const topics = getTopics();
   const topic = topics.find(t => t.name === topicName);
   currentTopic = topic;
 
   const levelList = document.getElementById('level-list');
   levelList.innerHTML = '';
-
-  if (topic) { // Přidána kontrola, zda topic existuje
+  if (topic) {
     topic.levels.forEach(level => {
       const listItem = document.createElement('li');
       listItem.textContent = `Úroveň ${level.levelNumber}`;
@@ -68,7 +72,7 @@ function loadLevels() {
       levelList.appendChild(listItem);
     });
   } else {
-    console.error(`Téma s názvem "${topicName}" nebylo nalezeno.`);
+    console.error(`Téma "${topicName}" nebylo nalezeno.`);
   }
 }
 
@@ -258,6 +262,6 @@ function showFinalScoreDialog() {
 function updateProgressBar() {
   const progressBar = document.getElementById('progress-bar');
   const answeredWords = totalWordsInLevel - (remainingWords.length + wordsToTest.length);
-  const percentage = (answeredWords / totalWordsInLevel) * 100;
+  const percentage = totalWordsInLevel > 0 ? (answeredWords / totalWordsInLevel) * 100 : 0; // Ošetření dělení nulou
   progressBar.style.width = `${percentage}%`;
 }
