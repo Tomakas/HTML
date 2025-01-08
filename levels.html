@@ -1,24 +1,9 @@
-<!DOCTYPE html>
-<html lang="cs">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Výběr Úrovně</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <div class="container">
-    <div class="navigation-buttons">
-      <button onclick="goTo('/')">Domů</button>
-      <button onclick="goBack()">Zpět</button>
-      <button onclick="showHelp()">Nápověda</button>
-    </div>
-    <ul id="level-list" class="topic-list"></ul> </div>
-
-  <script type="module">
-    import { loadLevels } from './js/app.js';
+<script type="module">
+    // Změna importu
+    import { loadLevels } from '/js/app.js';
 
     function goTo(path) {
+      // Změna v goTo()
       window.location.href = window.location.origin + path;
     }
 
@@ -35,5 +20,3 @@
 
     loadLevels();
   </script>
-</body>
-</html>

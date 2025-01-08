@@ -1,41 +1,9 @@
-<!DOCTYPE html>
-<html lang="cs">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Testování</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <div class="container">
-    <div class="navigation-buttons">
-      <button onclick="goTo('/')">Domů</button>
-      <button onclick="goBack()">Zpět</button>
-      <button onclick="showHelp()">Nápověda</button>
-    </div>
-    
-    <div class="progress-bar-container" id="progress-bar-container">
-      <div class="progress-bar" id="progress-bar"></div>
-    </div>
+<script type="module">
+    // Změna importu
+    import { initTesting } from '/js/app.js'; // Import funkce initTesting
 
-    <div class="testing-container">
-      <div class="testing-word" id="testing-word"></div>
-      <input type="text" class="testing-input" id="testing-input" readonly>
-      <div class="letter-grid" id="letter-grid"></div>
-      <div class="testing-controls">
-        <button class="delete" onclick="onDeleteTapped()">Vymazat</button>
-        <button class="confirm" onclick="onConfirmTapped()">Potvrdit</button>
-        <button class="dont-know" onclick="onDontKnowTapped()">Nevím</button>
-      </div>
-      <div class="testing-score" id="testing-score">Skóre: 0</div>
-    </div>
-
-    <div id="alert-container"></div>
-  </div>
-
-  <script src="js/app.js" type="module"></script>
-  <script>
     function goTo(path) {
+      // Změna v goTo()
       window.location.href = window.location.origin + path;
     }
 
@@ -55,6 +23,12 @@
         "5. Kliknutím na tlačítko 'Nevím' zobrazíte správnou odpověď a ztratíte bod.\n" +
         "6. Po správné odpovědi získáte bod, po špatné odpovědi ztratíte 2 body.");
     }
+
+    // Získání parametrů z URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const topic = urlParams.get('topic');
+    const level = urlParams.get('level');
+
+    // Inicializace testování pro dané téma a úroveň
+    initTesting(topic, level);
   </script>
-</body>
-</html>

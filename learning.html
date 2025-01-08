@@ -1,25 +1,9 @@
-<!DOCTYPE html>
-<html lang="cs">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Učení</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <div class="container">
-    <div class="navigation-buttons">
-      <button onclick="goTo('/')">Domů</button>
-      <button onclick="goBack()">Zpět</button>
-      <button onclick="showHelp()">Nápověda</button>
-    </div>
+<script type="module">
+    // Změna importu
+    import { loadWords } from '/js/app.js'; // Import funkce loadWords
 
-    <ul class="word-list" id="word-list"></ul>
-  </div>
-
-  <script src="js/app.js" type="module"></script>
-  <script>
     function goTo(path) {
+      // Změna v goTo()
       window.location.href = window.location.origin + path;
     }
 
@@ -33,6 +17,12 @@
         "Kliknutím na tlačítko 'Zpět' se vrátíte na předchozí stránku.\n"+
         "Na této stránce vidíte seznam slov pro učení.");
     }
+
+    // Získání parametrů z URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const topic = urlParams.get('topic');
+    const level = urlParams.get('level');
+
+    // Načtení slov pro dané téma a úroveň
+    loadWords(topic, level);
   </script>
-</body>
-</html>
