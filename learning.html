@@ -18,23 +18,25 @@
 
   <script type="module">
     import { loadWords } from '/js/app.js';
-    function goTo(path) {
+
+    // Připojení funkcí k objektu window
+    window.goTo = function(path) {
       window.location.href = window.location.origin + path;
     }
 
-    function goBack() {
+    window.goBack = function() {
       window.history.back();
     }
 
-    function showHelp() {
+    window.showHelp = function() {
       alert("Nápověda:\n\n" +
         "Kliknutím na tlačítko 'Domů' se vrátíte na domovskou stránku.\n" +
         "Kliknutím na tlačítko 'Zpět' se vrátíte na předchozí stránku.\n"+
         "Na této stránce vidíte seznam slov pro učení.");
     }
 
-    // Načtení slov pro dané téma a úroveň
-    loadWords(); // Bez argumentů
-</script>
+    // Načtení slov pro dané téma a úroveň bez argumentů
+    loadWords();
+  </script>
 </body>
 </html>
