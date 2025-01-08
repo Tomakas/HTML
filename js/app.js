@@ -233,6 +233,7 @@ export function onLearningBack() {
     updateLearningDisplay();
     updateLearningProgressBar();
     updateLearningButtons();
+    playCurrentWordAudio()
   }
 }
 
@@ -245,6 +246,7 @@ export function onLearningNext() {
     updateLearningDisplay();
     updateLearningProgressBar();
     updateLearningButtons();
+    playCurrentWordAudio()
   }
 }
 
