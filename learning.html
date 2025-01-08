@@ -1,39 +1,40 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Učení</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Učení</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="container">
-    <div class="navigation-buttons">
-      <button onclick="goTo('/')">Domů</button>
-      <button onclick="goBack()">Zpět</button>
-      <button onclick="showHelp()">Nápověda</button>
-    </div>
-    <ul id="word-list" class="word-list"></ul>
-  </div>
-  <script>
-    window.goTo = function(path) {
-      window.location.href = window.location.origin + path;
-    }
+  <div class="container">
+    <div class="navigation-buttons">
+      <button onclick="goTo('/')">Domů</button>
+      <button onclick="goBack()">Zpět</button>
+      <button onclick="showHelp()">Nápověda</button>
+    </div>
+    <ul id="word-list" class="word-list"></ul>
+  </div>
 
-    window.goBack = function() {
-      window.history.back();
-    }
+  <script type="module">
+    import { loadWords } from '/js/app.js';
+    function goTo(path) {
+      window.location.href = window.location.origin + path;
+    }
 
-    window.showHelp = function() {
-      alert("Nápověda:\n\n" +
-        "Kliknutím na tlačítko 'Domů' se vrátíte na domovskou stránku.\n" +
-        "Kliknutím na tlačítko 'Zpět' se vrátíte na předchozí stránku.\n"+
-        "Na této stránce vidíte seznam slov pro učení.");
-    }
-  </script>
-  <script type="module">
-    import { loadWords } from '/js/app.js';
-    loadWords();
-  </script>
+    function goBack() {
+      window.history.back();
+    }
+
+    function showHelp() {
+      alert("Nápověda:\n\n" +
+        "Kliknutím na tlačítko 'Domů' se vrátíte na domovskou stránku.\n" +
+        "Kliknutím na tlačítko 'Zpět' se vrátíte na předchozí stránku.\n"+
+        "Na této stránce vidíte seznam slov pro učení.");
+    }
+
+    // Načtení slov pro dané téma a úroveň
+    loadWords(); // Bez argumentů
+</script>
 </body>
 </html>

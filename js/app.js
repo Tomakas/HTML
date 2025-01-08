@@ -1,6 +1,7 @@
 // js/app.js
 
 
+
 import { getTopics } from '../data/data.js';
 import { Topic, Level, Word } from './models.js';
 
@@ -16,19 +17,17 @@ let totalWordsInLevel = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
   const path = window.location.pathname;
-  const urlParams = new URLSearchParams(window.location.search);
-  const topicName = urlParams.get('topic');
-  const levelNumber = parseInt(urlParams.get('level'));
   if (path.endsWith('/topic.html')) {
     loadTopics();
   } else if (path.endsWith('/learning.html')) {
-    loadWords(topicName, levelNumber);
+    loadWords();
   } else if (path.endsWith('/testing.html')) {
-    initTesting(topicName, levelNumber);
-  } else if (path.endsWith('/levels.html')){
-    loadLevels(topicName);
+    initTesting();
+  } else if (path.endsWith('/levels.html')) { // Oprava na 'levels.html'
+    loadLevels();
   }
 });
+
 
 export function loadTopics() {
   const topics = getTopics();
@@ -41,41 +40,35 @@ export function loadTopics() {
     const listItem = document.createElement('li');
     listItem.textContent = topic.name;
     listItem.addEventListener('click', () => {
-        window.location.href = `/level.html?mode=${mode}&topic=${topic.name}`;
+      window.location.href = `/levels.html?mode=${mode}&topic=${encodeURIComponent(topic.name)}`; // Oprava na 'levels.html'
     });
     topicList.appendChild(listItem);
   });
 }
 
-export function loadLevels(topicName) {
-  // Není potřeba znova parsovat url parametry
-  // const urlParams = new URLSearchParams(window.location.search);
-  // const topicName = urlParams.get('topic');
-  const mode = urlParams.get('mode'); // mode se používá v loadLevels, tak ho parsujeme zde
+export function loadLevels() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const topicName = urlParams.get('topic');
+  const mode = urlParams.get('mode');
   const topics = getTopics();
   const topic = topics.find(t => t.name === topicName);
   currentTopic = topic;
 
   const levelList = document.getElementById('level-list');
   levelList.innerHTML = '';
-  if (topic) {
-    topic.levels.forEach(level => {
-      const listItem = document.createElement('li');
-      listItem.textContent = `Úroveň ${level.levelNumber}`;
-      listItem.addEventListener('click', () => {
-          if (mode === 'learning') {
-              window.location.href = `/learning.html?mode=${mode}&topic=${topic.name}&level=${level.levelNumber}`;
-          } else if (mode === 'testing') {
-              window.location.href = `/testing.html?mode=${mode}&topic=${topic.name}&level=${level.levelNumber}`;
-          }
-      });
-      levelList.appendChild(listItem);
+  topic.levels.forEach(level => {
+    const listItem = document.createElement('li');
+    listItem.textContent = `Úroveň ${level.levelNumber}`;
+    listItem.addEventListener('click', () => {
+      if (mode === 'learning') {
+        window.location.href = `/learning.html?mode=${mode}&topic=${encodeURIComponent(topic.name)}&level=${level.levelNumber}`;
+      } else if (mode === 'testing') {
+        window.location.href = `/testing.html?mode=${mode}&topic=${encodeURIComponent(topic.name)}&level=${level.levelNumber}`;
+      }
     });
-  } else {
-    console.error(`Téma "${topicName}" nebylo nalezeno.`);
-  }
+    levelList.appendChild(listItem);
+  });
 }
-
 export function loadWords() {
   const urlParams = new URLSearchParams(window.location.search);
   const topicName = urlParams.get('topic');

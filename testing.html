@@ -1,61 +1,66 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Testování</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testování</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="container">
-    <div class="navigation-buttons">
-      <button onclick="goTo('/')">Domů</button>
-      <button onclick="goBack()">Zpět</button>
-      <button onclick="showHelp()">Nápověda</button>
-    </div>
+  <div class="container">
+    <div class="navigation-buttons">
+      <button onclick="goTo('/')">Domů</button>
+      <button onclick="goBack()">Zpět</button>
+      <button onclick="showHelp()">Nápověda</button>
+    </div>
 
-    <div class="testing-container">
-      <div id="testing-word" class="testing-word"></div>
-      <input type="text" id="testing-input" class="testing-input" readonly>
-      <div id="letter-grid" class="letter-grid"></div>
-      <div class="testing-controls">
-        <button class="delete" onclick="onDeleteTapped()">Vymazat</button>
-        <button class="confirm" onclick="onConfirmTapped()">Potvrdit</button>
-        <button class="dont-know" onclick="onDontKnowTapped()">Nevím</button>
-      </div>
-      <div id="testing-score" class="testing-score"></div>
-      <div class="progress-bar-container">
-        <div id="progress-bar" class="progress-bar"></div>
-      </div>
-      <div id="alert-container"></div>
-    </div>
-  </div>
 
-  <script type="module">
-    import { initTesting } from '/js/app.js';
+    <div class="testing-container">
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <div id="testing-word" class="testing-word"></div>
+      <input type="text" id="testing-input" class="testing-input" readonly>
+      <div class="letter-grid" id="letter-grid"></div>
+      <div class="testing-controls">
+        <button class="delete" onclick="onDeleteTapped()">Vymazat</button>
+        <button class="confirm" onclick="onConfirmTapped()">Potvrdit</button>
+        <button class="dont-know" onclick="onDontKnowTapped()">Nevím</button>
+      </div>
 
-    window.goTo = function(path) {
-      window.location.href = window.location.origin + path;
-    }
+      <div id="alert-container"></div>
+      <div id="testing-score" class="testing-score">Skóre: 0</div>
+    </div>
+  </div>
 
-    window.goBack = function() {
-      window.history.back();
-    }
+  <script type="module">
+    import { initTesting } from '/js/app.js'; // Import funkce initTesting
 
-    window.showHelp = function() {
-      alert("Nápověda:\n\n" +
-        "Kliknutím na tlačítko 'Domů' se vrátíte na domovskou stránku.\n" +
-        "Kliknutím na tlačítko 'Zpět' se vrátíte na předchozí stránku.\n" +
-        "Na této stránce si otestujete znalosti slovíček.\n" +
-        "1. Zobrazí se vám české slovo.\n" +
-        "2. Klikáním na tlačítka s písmeny poskládejte anglický překlad.\n" +
-        "3. Kliknutím na tlačítko 'Vymazat' smažete napsané slovo.\n" +
-        "4. Kliknutím na tlačítko 'Potvrdit' ověříte vaši odpověď.\n" +
-        "5. Kliknutím na tlačítko 'Nevím' zobrazíte správnou odpověď a ztratíte bod.\n" +
-        "6. Po správné odpovědi získáte bod, po špatné odpovědi ztratíte 2 body.");
-    }
+    function goTo(path) {
+      window.location.href = window.location.origin + path;
+    }
 
-    initTesting();
-  </script>
+    function goBack() {
+      window.history.back();
+    }
+
+    function showHelp() {
+      alert("Nápověda:\n\n" +
+        "Kliknutím na tlačítko 'Domů' se vrátíte na domovskou stránku.\n" +
+        "Kliknutím na tlačítko 'Zpět' se vrátíte na předchozí stránku.\n" +
+        "Na této stránce si otestujete znalosti slovíček.\n" +
+        "1. Zobrazí se vám české slovo.\n" +
+        "2. Klikáním na tlačítka s písmeny poskládejte anglický překlad.\n" +
+        "3. Kliknutím na tlačítko 'Vymazat' smažete napsané slovo.\n" +
+        "4. Kliknutím na tlačítko 'Potvrdit' ověříte vaši odpověď.\n" +
+        "5. Kliknutím na tlačítko 'Nevím' zobrazíte správnou odpověď a ztratíte bod.\n" +
+        "6. Po správné odpovědi získáte bod, po špatné odpovědi ztratíte 2 body.");
+    }
+
+    // Inicializace testování pro dané téma a úroveň
+    initTesting(); // Bez argumentů
+</script>
+
+
 </body>
 </html>
