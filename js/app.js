@@ -24,6 +24,9 @@ let audioEnabled = true; // Výchozí hodnota
 // Aktuální režim ('learning' nebo 'testing')
 let currentMode = null;
 
+// Globální proměnná pro aktuálně přehrávaný audio
+let currentAudio = null;
+
 document.addEventListener('DOMContentLoaded', () => {
   const path = window.location.pathname;
   
@@ -192,18 +195,16 @@ export function initLearning() {
   learningWords = level.words;
   learningCurrentIndex = 0;
   totalWordsInLevel = learningWords.length;
-  currentMode = 'learning'; // set mode
+  currentMode = 'learning'; // Nastavení aktuálního režimu
   updateLearningDisplay();
   updateLearningProgressBar();
   updateLearningButtons();
   
   // Automatické přehrání zvuku pro první slovo
   if (audioEnabled) {
-    playCurrentWordAudio();
+    window.playCurrentWordAudio();
   }
 }
-
-
 
 /**
  * Aktualizuje zobrazení aktuálního slova v Learning Mode
@@ -222,9 +223,6 @@ function updateLearningDisplay() {
     `;
   }
 }
-
-
-
 
 /**
  * Funkce pro tlačítko "Zpět" v Learning Mode
@@ -512,11 +510,24 @@ function updateProgressBar() {
  * Funkce pro přehrání aktuálního slova v Learning Mode
  */
 export function playCurrentWordAudio() {
+  console.log('playCurrentWordAudio called for', currentWord);
   if (currentMode === 'learning' && audioEnabled && currentWord) {
-    const audio = new Audio(`voice/${currentWord.english.toLowerCase()}.mp3`);
-    audio.play().catch(error => {
+    // Zastavení předchozího audio, pokud existuje
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+      console.log('Previous audio paused.');
+    }
+
+    currentAudio = new Audio(`voice/${currentWord.english.toLowerCase()}.mp3`);
+    currentAudio.preload = 'auto';
+    currentAudio.play().then(() => {
+      console.log('Audio played successfully.');
+    }).catch(error => {
       console.error(`Nelze přehrát zvuk pro slovo: ${currentWord.english}`, error);
     });
+  } else {
+    console.warn('Audio není povoleno nebo není nastavené aktuální slovo.');
   }
 }
 
