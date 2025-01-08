@@ -1,22 +1,41 @@
-<script type="module">
-    // Změna importu
-    import { loadLevels } from '/js/app.js';
-    
-    function goTo(path) {
-      // Změna v goTo()
-      window.location.href = window.location.origin + path;
-    }
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Výběr Úrovně</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="navigation-buttons">
+      <button onclick="goTo('/')">Domů</button>
+      <button onclick="goBack()">Zpět</button>
+      <button onclick="showHelp()">Nápověda</button>
+    </div>
+    <ul id="level-list" class="topic-list"></ul>
+  </div>
 
-    function goBack() {
-      window.history.back();
-    }
+<script>
+    window.goTo = function (path) {
+      window.location.href = window.location.origin + path;
+    };
 
-    function showHelp() {
-      alert("Nápověda:\n\n" +
-      "Kliknutím na tlačítko 'Domů' se vrátíte na domovskou stránku.\n" +
-      "Kliknutím na tlačítko 'Zpět' se vrátíte na předchozí stránku.\n"+
-      "Na této stránce si vyberte úroveň, ze které se chcete učit, nebo testovat.");
-    }
+    window.goBack = function () {
+      window.history.back();
+    };
 
-    loadLevels();
-  </script>
+    window.showHelp = function () {
+      alert("Nápověda:\n\n" +
+      "Kliknutím na tlačítko 'Domů' se vrátíte na domovskou stránku.\n" +
+      "Kliknutím na tlačítko 'Zpět' se vrátíte na předchozí stránku.\n"+
+      "Na této stránce si vyberte úroveň, ze které se chcete učit, nebo testovat.");
+    };
+  </script>
+  <script type="module">
+    import { loadLevels } from '/js/app.js';
+    
+    loadLevels();
+  </script>
+</body>
+</html>

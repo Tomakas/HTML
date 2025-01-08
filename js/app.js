@@ -53,7 +53,9 @@ function loadLevels() {
 
   const levelList = document.getElementById('level-list');
   levelList.innerHTML = '';
-  topic.levels.forEach(level => {
+
+  if (topic) { // Přidána kontrola, zda topic existuje
+    topic.levels.forEach(level => {
       const listItem = document.createElement('li');
       listItem.textContent = `Úroveň ${level.levelNumber}`;
       listItem.addEventListener('click', () => {
@@ -64,7 +66,10 @@ function loadLevels() {
           }
       });
       levelList.appendChild(listItem);
-  });
+    });
+  } else {
+    console.error(`Téma s názvem "${topicName}" nebylo nalezeno.`);
+  }
 }
 
 function loadWords() {
