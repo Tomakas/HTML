@@ -501,3 +501,23 @@ function updateProgressBar() {
     progressBar.style.width = `${percentage}%`;
   }
 }
+
+/**
+ * Funkce pro přehrání aktuálního slova v Learning Mode
+ */
+export function playCurrentWordAudio() {
+  if (currentMode === 'learning' && audioEnabled && currentWord) {
+    const audio = new Audio(`voice/${currentWord.english.toLowerCase()}.mp3`);
+    audio.play().catch(error => {
+      console.error(`Nelze přehrát zvuk pro slovo: ${currentWord.english}`, error);
+    });
+  }
+}
+
+// Připojení Learning Mode a Testing Mode funkcí k window objektu
+window.onLearningBack = onLearningBack;
+window.onLearningNext = onLearningNext;
+window.onDeleteTapped = onDeleteTapped;
+window.onConfirmTapped = onConfirmTapped;
+window.onDontKnowTapped = onDontKnowTapped;
+window.playCurrentWordAudio = playCurrentWordAudio; // Přidáno pro Audio tlačítko

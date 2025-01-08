@@ -15,6 +15,7 @@
       <button onclick="showHelp()">Nápověda</button>
     </div>
     
+ 
     <!-- Progres bar -->
     <div class="progress-bar-container">
       <div class="progress-bar" id="learning-progress-bar"></div>
@@ -25,17 +26,30 @@
       <div id="learning-word" class="learning-word">Slovo zde</div>
     </div>
     
-    <!-- Navigační tlačítka -->
+    <!-- Navigační tlačítka v Learning Mode -->
     <div class="learning-controls">
       <button id="learning-back-button" class="learning-control-button" onclick="onLearningBack()">Zpět</button>
+      <button id="learning-audio-button" class="learning-control-button">Audio</button> <!-- Přidáno nové tlačítko -->
       <button id="learning-next-button" class="learning-control-button" onclick="onLearningNext()">Další</button>
     </div>
   </div>
 
-  <script type="module">
-    import { initLearning } from '/js/app.js';
+  <!-- Nastavení Modal -->
+  <div id="settings-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Nastavení</h2>
+      <div class="setting-item">
+        <label for="audio-toggle">Přehrávání zvuku:</label>
+        <input type="checkbox" id="audio-toggle">
+      </div>
+    </div>
+  </div>
 
-    // Připojení funkcí k objektu window
+  <script type="module">
+    import { loadSettings, initializeSettingsModal, initLearning } from '/js/app.js';
+
+    // Připojte navigační funkce k objektu window
     window.goTo = function(path) {
       window.location.href = window.location.origin + path;
     }
@@ -49,12 +63,22 @@
         "Kliknutím na tlačítko 'Domů' se vrátíte na domovskou stránku.\n" +
         "Kliknutím na tlačítko 'Zpět' se vrátíte na předchozí stránku.\n" +
         "V režimu Učení se slova zobrazují jedno po druhém.\n" +
-        "Použijte tlačítka 'Zpět' a 'Další' pro navigaci mezi slovy.\n" +
+        "Použijte tlačítka 'Zpět', 'Audio' a 'Další' pro navigaci a přehrávání zvuku.\n" +
         "Progres bar ukazuje vaši aktuální pozici ve výuce.");
     }
 
-    // Inicializace učení
-    initLearning();
+    // Inicializace nastavení, modal okna a Learning Mode
+    document.addEventListener('DOMContentLoaded', () => {
+      loadSettings();
+      initializeSettingsModal();
+      initLearning();
+      
+      // Přidání event listeneru pro tlačítko "Audio"
+      const audioButton = document.getElementById('learning-audio-button');
+      if (audioButton) {
+        audioButton.addEventListener('click', playCurrentWordAudio);
+      }
+    });
   </script>
 </body>
 </html>

@@ -338,22 +338,28 @@ body {
   }
   
   .learning-control-button {
-    background-color: #6c757d; /* Šedá barva */
+    background-color: #28a745; /* Zelená barva */
     color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
-    font-size: 20px;
+    font-size: 18px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .learning-control-button:hover {
+    background-color: #218838; /* Tmavší zelená při hover */
   }
   
   .learning-control-button:disabled {
-    background-color: #adb5bd; /* Světle šedá pro deaktivovaná tlačítka */
+    background-color: #6c757d; /* Šedá barva pro disabled stav */
     cursor: not-allowed;
   }
   
+  
   .learning-control-button:hover:not(:disabled) {
-    background-color: #5a6268; /* Tmavší šedá při hover */
+    background-color: #3e8100; /* Tmavší šedá při hover */
   }
   
 
