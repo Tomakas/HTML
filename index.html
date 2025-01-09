@@ -10,38 +10,23 @@
 </head>
 <body>
   <div class="container">
-    <div id="nav-placeholder"></div>
-    <div class="navigation-buttons">
-      <button onclick="goTo('/')">Domů</button>
-      <button onclick="goBack()">Zpět</button>
-      <button onclick="showHelp()">Nápověda</button>
-      <button id="auth-button">Přihlásit se</button> <!-- Tlačítko pro přihlášení/odhlášení -->
-    </div>
-
-    <div class="home-buttons">
-      <button class="learning" onclick="goTo('/topic.html?mode=learning')">Učení</button>
-      <button class="testing" onclick="goTo('/topic.html?mode=testing')">Testování</button>
-      <button class="settings" id="settings-button">Nastavení</button>
-    </div>
+    <div id="nav-placeholder"></div> <!-- Placeholder pro navigaci -->
 
     <div id="current-user" class="current-user"></div>
-  </div>
-
-  <!-- Přihlašovací Modal -->
-  <div id="login-modal" class="modal">
-    <div class="modal-content">
-      <span class="close-button">&times;</span>
-      <h2>Přihlášení</h2>
-      <div class="user-creation">
-        <label for="new-username">Zadejte uživatelské jméno:</label>
-        <input type="text" id="new-username" placeholder="Uživatelské jméno">
-        <button id="login-submit-button">Přihlásit se</button>
+    
+    <!-- Přihlašovací Modal -->
+    <div id="login-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Přihlášení</h2>
+        <div class="user-creation">
+          <label for="new-username">Zadejte uživatelské jméno:</label>
+          <input type="text" id="new-username" placeholder="Uživatelské jméno">
+          <button id="login-submit-button">Přihlásit se</button>
+        </div>
       </div>
     </div>
   </div>
-
-  <div id="nav-placeholder"></div>
-
 
   <script type="module">
     import { getCurrentUser, addUser, setCurrentUser, logoutUser } from './js/user.js';
