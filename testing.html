@@ -3,18 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Testování</title>
+  <title>Naše škola</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="fontawesome/css/all.min.css">
+
 </head>
 <body>
   <div class="container">
+    <div id="nav-placeholder"></div> <!-- Placeholder pro navigaci -->
     <div class="navigation-buttons">
-      <button onclick="goTo('/')">Domů</button>
-      <button onclick="goBack()">Zpět</button>
-      <button onclick="showHelp()">Nápověda</button>
     </div>
-
-
     <div class="testing-container">
       <div class="progress-bar-container">
         <div class="progress-bar" id="progress-bar"></div>
@@ -36,31 +34,11 @@
 
   <script type="module">
     import { initTesting } from '/js/app.js';
-
-    // Připojení funkcí k objektu window
-    window.goTo = function(path) {
-      window.location.href = window.location.origin + path;
-    }
-
-    window.goBack = function() {
-      window.history.back();
-    }
-
-    window.showHelp = function() {
-      alert("Nápověda:\n\n" +
-        "Kliknutím na tlačítko 'Domů' se vrátíte na domovskou stránku.\n" +
-        "Kliknutím na tlačítko 'Zpět' se vrátíte na předchozí stránku.\n" +
-        "Na této stránce si otestujete znalosti slovíček.\n" +
-        "1. Zobrazí se vám české slovo.\n" +
-        "2. Klikáním na tlačítka s písmeny poskládejte anglický překlad.\n" +
-        "3. Kliknutím na tlačítko 'Vymazat' smažete napsané slovo.\n" +
-        "4. Kliknutím na tlačítko 'Potvrdit' ověříte vaši odpověď.\n" +
-        "5. Kliknutím na tlačítko 'Nevím' zobrazíte správnou odpověď a ztratíte bod.\n" +
-        "6. Po správné odpovědi získáte bod, po špatné odpovědi ztratíte 2 body.");
-    }
-
-    // Inicializace testování pro dané téma a úroveň bez argumentů
-    initTesting();
+    window.goTo = function (path) {
+        window.location.href = window.location.origin + path;
+      }
+        initTesting();
   </script>
+    <script src="js/nav.js"></script>
 </body>
 </html>

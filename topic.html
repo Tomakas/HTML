@@ -1,41 +1,31 @@
+
 <!DOCTYPE html>
 <html lang="cs">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Výběr Tématu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Naše škola</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="fontawesome/css/all.min.css">
 </head>
+
 <body>
   <div class="container">
-    <div class="navigation-buttons">
-      <button onclick="goTo('/')">Domů</button>
-      <button onclick="goBack()">Zpět</button>
-      <button onclick="showHelp()">Nápověda</button>
-    </div>
+    <div id="nav-placeholder"></div> 
     <ul id="topic-list" class="topic-list"></ul>
   </div>
 
   <script type="module">
     import { loadTopics } from '/js/app.js';
 
-    // Připojte navigační funkce k objektu window
-    window.goTo = function(path) {
-      window.location.href = window.location.origin + path;
-    }
-
-    window.goBack = function() {
-      window.history.back();
-    }
-
-    window.showHelp = function() {
-      alert("Nápověda:\n\n" +
-        "Kliknutím na tlačítko 'Domů' se vrátíte na domovskou stránku.\n" +
-        "Kliknutím na tlačítko 'Zpět' se vrátíte na předchozí stránku.\n"+
-        "Na této stránce si vyberte téma, ze kterého se chcete učit, nebo testovat.");
-    }
-
+    window.goTo = function (path) {
+        window.location.href = window.location.origin + path;
+      }
     loadTopics();
-  </script>
+
+</script>
+  <script src="js/nav.js"></script>
 </body>
+
 </html>

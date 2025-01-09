@@ -3,17 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Výběr Úrovně</title>
+  <title>Naše škola</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="fontawesome/css/all.min.css">
 </head>
 <body>
   <div class="container">
-    <div class="navigation-buttons">
-      <button onclick="goTo('/')">Domů</button>
-      <button onclick="goBack()">Zpět</button>
-      <button onclick="showHelp()">Nápověda</button>
-    </div>
-    <ul id="level-list" class="levels-list"></ul> <!-- Použití stejné třídy 'topic-list' -->  </div>
+    <div id="nav-placeholder"></div> 
+    <ul id="level-list" class="levels-list"></ul>
+   </div>
 
    <script type="module">
     import { loadLevels } from '/js/app.js';
@@ -21,18 +19,8 @@
       window.location.href = window.location.origin + path;
     }
 
-    window.goBack = function() {
-      window.history.back();
-    }
-
-    window.showHelp = function() {
-      alert("Nápověda:\n\n" +
-        "Kliknutím na tlačítko 'Domů' se vrátíte na domovskou stránku.\n" +
-        "Kliknutím na tlačítko 'Zpět' se vrátíte na předchozí stránku.\n"+
-        "Na této stránce si vyberte úroveň, ze které se chcete učit, nebo testovat.");
-    }
-
     loadLevels();
   </script>
+    <script src="js/nav.js"></script>
 </body>
 </html>

@@ -10,7 +10,8 @@ body {
   .container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0px;
+    justify-content:flex-start;
   }
   
   
@@ -31,6 +32,7 @@ body {
     cursor: pointer;
     flex-basis: 20%; /* Nastaví šířku tlačítka */
     max-width: 150px; /* Maximální šířka tlačítka */
+
   }
   
   .levels-list {
@@ -56,7 +58,6 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
 }
 
 .topic-item {
@@ -457,14 +458,14 @@ body {
   /* Základní styly pro navigaci */
   .navigation {
     position: fixed;
-    top: 50%;
+    top: 0;
     left: 0;
-    transform: translateY(-50%);
     background-color: #f8f9fa;
     border-left: 1px solid #dee2e6;
     padding: 20px 10px;
     border-radius: 8px 0 0 8px;
     width: 200px;
+    height: 100%; /* Nastavení výšky na 100% viewport height */
   }
   
 
@@ -472,6 +473,7 @@ body {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  align-items:start;
 }
 
 .navigation li {
@@ -506,11 +508,19 @@ body {
   color: #6c757d;
 }
 
+.navigation-bottom {
+  display: none;
+}
+
 /* Responzivní styly */
 @media (max-width: 1000px) {
   /* Vertikální navigace na levé straně se skryje */
   .navigation {
     display: none;
+  }
+
+  body {
+    padding-left: 0; 
   }
 
   /* Spodní horizontální navigace */
@@ -522,25 +532,25 @@ body {
     background-color: #f8f9fa;
     border-top: 1px solid #dee2e6;
     display: flex;
-    justify-content: space-around;
     align-items: center;
+    justify-content: space-between;
     box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
   }
-
+  
   .navigation-bottom ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
     display: flex;
-    justify-content: space-around;
     width: 100%;
+    align-items: center;
+    justify-content: center; /* Přidáno pro horizontální centrování */
   }
-
+  
   .navigation-bottom li {
     flex: 1;
     text-align: center;
+    align-items: center;
   }
-
+  
   .navigation-bottom button {
     background: none;
     border: none;
@@ -548,16 +558,16 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 14px; /* Zvýšení velikosti textu */
+    font-size: 14px; 
     color: #343a40;
   }
-
+  
   .navigation-bottom button:hover {
     color: #007bff;
   }
-
+  
   .navigation-bottom i {
-    font-size: 24px; /* Zvýšení velikosti ikon */
+    font-size: 24px;
   }
 
   /* Zobrazení aktuálně přihlášeného uživatele ve spodním menu */
@@ -570,25 +580,7 @@ body {
     color: #6c757d;
   }
 
-  /* Odstranění levého paddingu z těla stránky */
-  body {
-    padding-left: 0; /* Odstranění levého paddingu */
-  }
 
-  /* Rovnoměrné rozmístění ikon ve spodním navigačním menu */
-  .navigation-bottom button {
-    flex: 1; /* Rozšíření tlačítek, aby vyplnily dostupnou šířku */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-
-@media (max-width: 1000px) {
-  .navigation-bottom {
-    display: block;
-  }
 }
 
   

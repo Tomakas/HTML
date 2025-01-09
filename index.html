@@ -1,6 +1,7 @@
 <!-- /index.html -->
 <!DOCTYPE html>
 <html lang="cs">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,128 +9,21 @@
   <link rel="stylesheet" href="fontawesome/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
   <div class="container">
     <div id="nav-placeholder"></div> <!-- Placeholder pro navigaci -->
 
-    <div id="current-user" class="current-user"></div>
-    
-    <!-- Přihlašovací Modal -->
-    <div id="login-modal" class="modal">
-      <div class="modal-content">
-        <span class="close-button">&times;</span>
-        <h2>Přihlášení</h2>
-        <div class="user-creation">
-          <label for="new-username">Zadejte uživatelské jméno:</label>
-          <input type="text" id="new-username" placeholder="Uživatelské jméno">
-          <button id="login-submit-button">Přihlásit se</button>
-        </div>
-      </div>
-    </div>
-  </div>
+    <script type="module">
+      import { loadSettings, initializeSettingsModal } from './js/app.js';
 
-  <script type="module">
-    import { getCurrentUser, addUser, setCurrentUser, logoutUser } from './js/user.js';
-    import { loadSettings, initializeSettingsModal } from './js/app.js';
-
-    // Připojte funkce k objektu window, aby byly globálně dostupné
-    window.goTo = function(path) {
-      window.location.href = window.location.origin + path;
-    }
-
-    window.goBack = function() {
-      window.history.back();
-    }
-
-    window.showHelp = function() {
-      alert("Nápověda:\n\n" +
-        "Domů - Návrat na domovskou stránku.\n" +
-        "Zpět - Návrat na předchozí stránku.\n" +
-        "Učení - Výběr témat k učení.\n" +
-        "Testování - Výběr témat k otestování znalostí.");
-    }
-
-    window.logout = function() {
-      logoutUser();
-      updateAuthButton();
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      loadSettings();
-      initializeSettingsModal();
-      updateAuthButton();
-      displayCurrentUser();
-
-      // Přihlašovací Modal
-      const modal = document.getElementById('login-modal');
-      const authButton = document.getElementById('auth-button');
-      const closeButton = modal.querySelector('.close-button');
-      const loginSubmitButton = document.getElementById('login-submit-button');
-      const newUsernameInput = document.getElementById('new-username');
-
-      // Otevření modalu při kliknutí na tlačítko "Přihlásit se"
-      authButton.addEventListener('click', () => {
-        const currentUser = getCurrentUser();
-        if (!currentUser) {
-          modal.style.display = 'block';
-        } else {
-          // Pokud je uživatel přihlášen, provede se odhlášení
-          window.logout();
-        }
-      });
-
-      // Zavření modalu při kliknutí na "x"
-      closeButton.addEventListener('click', () => {
-        modal.style.display = 'none';
-      });
-
-      // Zavření modalu při kliknutí mimo obsah
-      window.addEventListener('click', (event) => {
-        if (event.target === modal) {
-          modal.style.display = 'none';
-        }
-      });
-
-      // Přihlášení uživatele
-      loginSubmitButton.addEventListener('click', () => {
-        const newUsername = newUsernameInput.value.trim();
-        if (newUsername === '') {
-          alert('Uživatelské jméno nemůže být prázdné.');
-          return;
-        }
-        addUser(newUsername);
-        setCurrentUser(newUsername);
-        modal.style.display = 'none';
-        updateAuthButton();
-        displayCurrentUser();
-      });
-    });
-
-    /**
-     * Aktualizuje text tlačítka pro přihlášení/odhlášení
-     */
-    function updateAuthButton() {
-      const authButton = document.getElementById('auth-button');
-      const currentUser = getCurrentUser();
-      if (currentUser) {
-        authButton.textContent = 'Odhlásit se';
-      } else {
-        authButton.textContent = 'Přihlásit se';
+      // Připojte funkce k objektu window, aby byly globálně dostupné
+      window.goTo = function (path) {
+        window.location.href = window.location.origin + path;
       }
-    }
+    </script>
+    <script src="js/nav.js"></script>
 
-    /**
-     * Zobrazuje aktuálního uživatele
-     */
-    function displayCurrentUser() {
-      const currentUserDisplay = document.getElementById('current-user');
-      const currentUser = getCurrentUser();
-      if (currentUser) {
-        currentUserDisplay.textContent = `Přihlášený uživatel: ${currentUser}`;
-      } else {
-        currentUserDisplay.textContent = '';
-      }
-    }
-  </script>
 </body>
+
 </html>
